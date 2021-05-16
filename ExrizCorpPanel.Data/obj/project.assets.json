@@ -1500,7 +1500,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.0.0": {
-      "sha512": "CCf4NjmDOoise7FAij2VPuHIgKKsu696vkTwhOkPVQfLsTmB2WLFfQ4yeO5Udtk8FD636UBMx6Y9eovzJKT76A==",
+      "sha512": "VdLJOCXhZaEMY7Hm2GKiULmn7IEPFE4XC5LPSfBVCUIA8YLZVh846gtfBJalsPQF2PlzdD7ecX7DZEulJ402ZQ==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.0.0",
       "files": [
@@ -2619,7 +2619,7 @@
       ]
     },
     "System.Reflection.Emit/4.0.1": {
-      "sha512": "/3dmiGuUUUjqZaSeTdxkgzY0De8sLpS4J3tYRETskSbZaRjwvL62IBalMGI6iczZ6udJ1iBlsBBYOHtdCfx90Q==",
+      "sha512": "P2wqAj72fFjpP6wb9nSfDqNBMab+2ovzSDzUZK7MVIm54tBJEPr9jWfSjjoTpPwj1LeKcmX3vr0ttyjSSFM47g==",
       "type": "package",
       "path": "system.reflection.emit/4.0.1",
       "files": [
@@ -3452,30 +3452,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tubas\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/tuba.saday/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tubas\\Desktop\\exriz\\ExrizCorpPanel\\ExrizCorpPanel.Data\\ExrizCorpPanel.Data.csproj",
+      "projectUniqueName": "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.Data/ExrizCorpPanel.Data.csproj",
       "projectName": "ExrizCorpPanel.Data",
-      "projectPath": "C:\\Users\\tubas\\Desktop\\exriz\\ExrizCorpPanel\\ExrizCorpPanel.Data\\ExrizCorpPanel.Data.csproj",
-      "packagesPath": "C:\\Users\\tubas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tubas\\Desktop\\exriz\\ExrizCorpPanel\\ExrizCorpPanel.Data\\obj\\",
+      "projectPath": "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.Data/ExrizCorpPanel.Data.csproj",
+      "packagesPath": "/Users/tuba.saday/.nuget/packages/",
+      "outputPath": "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.Data/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\tubas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/tuba.saday/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3512,10 +3510,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.300/RuntimeIdentifierGraph.json"
       }
     }
   }

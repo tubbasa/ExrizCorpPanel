@@ -1,0 +1,71 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.UI/ExrizCorpPanel.UI.csproj",
+    "projectName": "ExrizCorpPanel.UI",
+    "projectPath": "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.UI/ExrizCorpPanel.UI.csproj",
+    "outputPath": "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.UI/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {
+          "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.Core/ExrizCorpPanel.Core.csproj": {
+            "projectPath": "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.Core/ExrizCorpPanel.Core.csproj"
+          },
+          "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.Data/ExrizCorpPanel.Data.csproj": {
+            "projectPath": "/Users/tuba.saday/tuba-git-hub/ExrizCorpPanel/ExrizCorpPanel.Data/ExrizCorpPanel.Data.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.AspNetCore.All": {
+          "target": "Package",
+          "version": "[2.0.6, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.0.0, )",
+          "autoReferenced": true
+        },
+        "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+          "target": "Package",
+          "version": "[2.0.4, )"
+        },
+        "Syncfusion.EJ2.WordEditor.AspNet.Core": {
+          "target": "Package",
+          "version": "[17.4.0.49, )"
+        }
+      },
+      "imports": [
+        "net461",
+        "net462",
+        "net47",
+        "net471",
+        "net472",
+        "net48"
+      ],
+      "assetTargetFallback": true,
+      "warn": true,
+      "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.300/RuntimeIdentifierGraph.json"
+    }
+  }
+}
