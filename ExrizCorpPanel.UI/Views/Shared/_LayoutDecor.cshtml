@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @{
+        ExrizCorpPanel.UI.Models.Components.SiteDetail siteDetail = (ViewBag.LayoutModel as ExrizCorpPanel.UI.Models.CustomModels.LayoutModel).siteDetail;
+    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@siteDetail.SiteName</title>
+    @Html.Partial("~/Views/Decor/Shared/_Header.cshtml", siteDetail)
+</head>
+<body>
+
+    <div class="wrapper offcanvas-container" id="offcanvas-container">
+        <!-- inner-wrapper -->
+        <div class="inner-wrapper offcanvas-pusher">
+            <!-- container -->
+            <div class="container">
+            <!--if viewbag give error we can use component-->
+                @*@await Component.InvokeAsync("Duyuru")*@
+                @{
+                    ExrizCorpPanel.UI.Models.CustomModels.LayoutModel model = ViewBag.LayoutModel;
+
+                    ExrizCorpPanel.UI.Models.CustomModels.LayoutModel list = model;
+                    var footer = model.siteDetail;
+
+                }
+
+                @Html.Partial("~/Views/Decor/Shared/_Head.cshtml", list)
+
+                @RenderBody()
+            </div>
+
+            @Html.Partial("~/Views/Decor/Shared/_Footer.cshtml", model)
+        </div>
+
+        <!--offcanvas-->
+    </div>
+    @Html.Partial("~/Views/Decor/Shared/_Scripts.cshtml")
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

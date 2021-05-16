@@ -1,0 +1,250 @@
+﻿@model ExrizCorpPanel.UI.Areas.Admin.Models.CustomModels.RequestTypes.CommentRequest
+@{
+    ViewData["Title"] = "AddComment";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var language = TempData["lang"] as List<SelectListItem>;
+    var result = TempData["result"];
+}
+@section extraCss{
+    <link href="~/assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content" style="min-height: 1434px;">
+        <!-- BEGIN PAGE HEADER-->
+        <!-- BEGIN THEME PANEL -->
+        <!-- END THEME PANEL -->
+        <h1 class="page-title">
+            Exriz Kurumsal Panel
+
+        </h1>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    @*<i class="icon-home"></i>*@
+                    <a>Banner İşlemleri</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+
+                <li>
+                    @*<i class="icon-eye"></i>*@
+                    <a href="@Url.Action("AddBanner","BannerManagament")">Banner Ekle</a>
+                </li>
+            </ul>
+            <div class="page-toolbar">
+
+            </div>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="note note-info">
+
+
+            @{
+
+                if (Convert.ToInt32(result) == 1)
+                {
+                    <div class="note note-success">
+                        <h3>İşlem Durumu</h3>
+                        <p>
+                            Banner kayıt işlemi başarılı
+                            <a class="btn btn-small red btn-outline" href="#" target="_blank">listelemeye git</a>
+                        </p>
+                    </div>
+                }
+                else if (Convert.ToInt32(result) == -1)
+                {
+                    <div class="note note-danger">
+                        <h3>İşlem Durumu</h3>
+                        <p>
+                            Banner kayıt işlemi başarısız
+                            <a class="btn btn-small red btn-outline" href="#" target="_blank">hatayı bildir</a>
+                        </p>
+                    </div>
+                }
+                else
+                {
+
+                }
+            }
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Banner Ekle</span>
+
+                    </div>
+                    @*<div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-cloud-upload"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-wrench"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-trash"></i>
+                            </a>
+                        </div>*@
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    <div id="rootwizard">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <div class="container">
+                                    <ul>
+                                        <li><a href="#tab1" data-toggle="tab">Müşteri Yorum Kayıt</a></li>
+                                        <li><a id="nextLink" class="inactiveLink" href="#tab2" data-toggle="tab">Yorum Dil Değişkenleri</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <input type="text" id="ComId" style="display:none" />
+                            <div class="tab-pane" id="tab1">
+                                @*<form enctype="multipart/form-data" asp-controller="BannerManagament" asp-action="postBanner" class="form-horizontal">*@
+                                <div class="form-body">
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label asp-for="CustomerFirm" class="col-md-2 col-md-offset-2 control-label">Müşteri Firması</label>
+                                            <div class="col-md-5 oneline">
+                                                <input id="CustomerFirm" type="text" class="form-control" placeholder="Firma İsim " />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label asp-for="CustomerName" class="col-md-2 col-md-offset-2  control-label">Müşteri İsmi</label>
+                                            <div class="col-md-5 oneline ">
+                                                <input id="CustomerName" type="text" class="form-control" placeholder="Müşteri İsim" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-4">
+                                            <button onclick="addCat()" class="btn green">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*</form>*@
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                                <div class="form-body">
+                                    <div class="form-group">
+                                        @for (int i = 1; i < language.Count; i++)
+                                        {
+
+
+                                            <div class="col-md-12" style="margin-bottom:20px;">
+                                                <label class="col-md-2 control-label">@language[i].Text dili için veriler:</label>
+                                                <div class="col-md-3">
+                                                    <input id="desc-@language[i].Value" type="text" class="form-control" placeholder="Açıklama alanı" />
+                                                </div>
+                                            </div>
+
+
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-10 col-md-2">
+                                            <button onclick="take()" class="btn green">Kaydet</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div style="float:right">
+                                <input type='button' id="nextbtn" class='btn button-next' name='next' value='Sonraki' disabled="disabled" />
+                            </div>
+                            <div style="float:left">
+                                <input type='button' class='btn button-previous' name='previous' value='Önceki' />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+
+@section extraScript{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
+    <script src="~/assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/typeahead/handlebars.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-bootstrap-tagsinput.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#rootwizard').bootstrapWizard({ 'nextSelector': '.button-next', 'previousSelector': '.button-previous' });
+        });
+        function addCat() {
+            var comment = {};
+            comment.CustomerFirm = $('#CustomerFirm').val();
+            comment.CustomerName = $('#CustomerName').val();
+            $.ajax({
+                url: 'PostComment',
+                data: JSON.stringify(comment),
+                error: function () {
+                    $('#info').html('<p>An error has occurred</p>');
+                },
+                dataType: 'json',
+                contentType: "application/json;utf-8",
+                success: function (data) {
+                    console.log(data);
+                    $('#ComId').val(data);
+                    document.getElementById("nextbtn").disabled = false;
+                    var element = document.getElementById("nextLink");
+                    element.classList.remove("inactiveLink");
+                },
+                type: 'POST'
+            });
+
+        }
+        function take() {
+            var items = $('input[id^="desc"]');
+            var desclist = [];
+            for (var i = 0; i < items.length; i++) {
+                desclist.push({ LangId: items[i].id.split("-")[1], Name: items[i].value, CategoryId: $('#ComId').val() });
+
+            }
+
+            var list = [];
+            for (var i = 0; i < desclist.length; i++) {
+                list.push({ CustomerComment: desclist[i].Name, LangId: desclist[i].LangId, CustomerCommentId: desclist[i].CategoryId });
+            }
+            console.log(JSON.stringify(list));
+            $.ajax({
+                url: 'addCommentDetail',
+                data: JSON.stringify(list),
+                error: function () {
+                    $('#info').html('<p>An error has occurred</p>');
+                },
+                dataType: 'json',
+                contentType: "application/json;utf-8",
+                success: function (data) {
+                    console.log(data);
+
+                },
+                type: 'POST'
+            });
+            console.log(list);
+
+        };
+    </script>
+}

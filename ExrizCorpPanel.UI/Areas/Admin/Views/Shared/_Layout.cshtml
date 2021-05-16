@@ -1,0 +1,1202 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Metronic Admin Theme #2 | Blank Page Layout</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="Exriz Yazılım Kurumsal Admin Paneli" name="description" />
+    <meta content="Exriz Yazılım" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" />
+    <link href="~/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" />
+    <link href="~/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/assets/global/css/components-md.min.css" rel="stylesheet" id="style_components" />
+    <link href="~/assets/global/css/plugins-md.min.css" rel="stylesheet" />
+    @RenderSection("extraCss", false)
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+
+    <link href="~/assets/layouts/layout2/css/layout.min.css" rel="stylesheet" />
+    <link href="~/assets/layouts/layout2/css/themes/blue.min.css" rel="stylesheet" id="style_color" />
+    <link href="~/assets/layouts/layout2/css/custom.min.css" rel="stylesheet" />
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="~/assets/favicon.ico" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-29415951-2"></script>
+    <script>
+            (function (w, d, s, g, js, fs) {
+                g = w.gapi || (w.gapi = {}); g.analytics = { q: [], ready: function (f) { this.q.push(f); } };
+                js = d.createElement(s); fs = d.getElementsByTagName(s)[0];
+                js.src = 'https://apis.google.com/js/platform.js';
+                fs.parentNode.insertBefore(js, fs); js.onload = function () { g.load('analytics'); };
+            }(window, document, 'script'));
+        </script>
+    @*<script>
+        (function (w, d, s, g, js, fs) {
+            g = w.gapi || (w.gapi = {}); g.analytics = { q: [], ready: function (f) { this.q.push(f); } };
+            js = d.createElement(s); fs = d.getElementsByTagName(s)[0];
+            js.src = 'https://apis.google.com/js/platform.js';
+            fs.parentNode.insertBefore(js, fs); js.onload = function () { g.load('analytics'); };
+        }(window, document, 'script'));
+    </script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+
+    <!-- Include the ViewSelector2 component script. -->
+    <script src="~/assets/googleAnalyticsApi/view-selector2.js"></script>
+
+    <!-- Include the DateRangeSelector component script. -->
+    <script src="~/assets/googleAnalyticsApi/date-range-selector.js"></script>
+
+    <!-- Include the ActiveUsers component script. -->
+    <script src="~/assets/googleAnalyticsApi/active-users.js"></script>
+
+    <!-- Include the CSS that styles the charts. -->
+    <link rel="stylesheet" href="~/assets/googleAnalyticsApi/chartjs-visualizations.css">
+    @*<script>
+
+            gapi.analytics.ready(function () {
+
+                /**
+                 * Authorize the user immediately if the user has already granted access.
+                 * If no access has been created, render an authorize button inside the
+                 * element with the ID "embed-api-auth-container".
+                 */
+                gapi.analytics.auth.authorize({
+                    container: 'embed-api-auth-container',
+                    clientid: '29945276983-6uu3afjn02773ie6fdt47vdh7vo306hp.apps.googleusercontent.com'
+                });
+
+
+                /**
+                 * Create a new ViewSelector instance to be rendered inside of an
+                 * element with the id "view-selector-container".
+                 */
+                var viewSelector = new gapi.analytics.ViewSelector({
+                    container: 'view-selector-container'
+                });
+
+                // Render the view selector to the page.
+                viewSelector.execute();
+
+
+                /**
+                 * Create a new DataChart instance with the given query parameters
+                 * and Google chart options. It will be rendered inside an element
+                 * with the id "chart-container".
+                 */
+                var dataChart = new gapi.analytics.googleCharts.DataChart({
+                    query: {
+                        metrics: 'ga:sessions',
+                        dimensions: 'ga:date',
+                        'start-date': '30daysAgo',
+                        'end-date': 'yesterday'
+                    },
+                    chart: {
+                        container: 'chart-container',
+                        type: 'LINE',
+                        options: {
+                            width: '100%'
+                        }
+                    }
+                });
+
+
+                /**
+                 * Render the dataChart on the page whenever a new view is selected.
+                 */
+                viewSelector.on('change', function (ids) {
+                    dataChart.set({ query: { ids: ids } }).execute();
+                });
+
+            });
+        </script>*@
+    <script>
+
+        // == NOTE ==
+        // This code uses ES6 promises. If you want to use this code in a browser
+        // that doesn't supporting promises natively, you'll have to include a polyfill.
+        @{ 
+            var detail = TempData["apiDetail"];
+            var test = 1;
+        }
+        gapi.analytics.ready(function () {
+
+            /**
+             * Authorize the user immediately if the user has already granted access.
+             * If no access has been created, render an authorize button inside the
+             * element with the ID "embed-api-auth-container".
+             */
+            gapi.analytics.auth.authorize({
+                container: 'embed-api-auth-container',
+                clientid: '@detail'
+            });
+
+
+            /**
+             * Create a new ActiveUsers instance to be rendered inside of an
+             * element with the id "active-users-container" and poll for changes every
+             * five seconds.
+             */
+            var activeUsers = new gapi.analytics.ext.ActiveUsers({
+                container: 'active-users-container',
+                pollingInterval: 5
+            });
+
+
+            /**
+             * Add CSS animation to visually show the when users come and go.
+             */
+            activeUsers.once('success', function () {
+                var element = this.container.firstChild;
+                var timeout;
+
+                this.on('change', function (data) {
+                    var element = this.container.firstChild;
+                    var animationClass = data.delta > 0 ? 'is-increasing' : 'is-decreasing';
+                    element.className += (' ' + animationClass);
+
+                    clearTimeout(timeout);
+                    timeout = setTimeout(function () {
+                        element.className =
+                            element.className.replace(/ is-(increasing|decreasing)/g, '');
+                    }, 3000);
+                });
+            });
+
+
+            /**
+             * Create a new ViewSelector2 instance to be rendered inside of an
+             * element with the id "view-selector-container".
+             */
+            var viewSelector = new gapi.analytics.ext.ViewSelector2({
+                container: 'view-selector-container',
+            })
+                .execute();
+
+
+            /**
+             * Update the activeUsers component, the Chartjs charts, and the dashboard
+             * title whenever the user changes the view.
+             */
+            viewSelector.on('viewChange', function (data) {
+                var title = document.getElementById('view-name');
+                title.textContent = data.property.name + ' (' + data.view.name + ')';
+
+                // Start tracking active users for this view.
+                activeUsers.set(data).execute();
+
+                // Render all the of charts for this view.
+                renderWeekOverWeekChart(data.ids);
+                renderYearOverYearChart(data.ids);
+                renderTopBrowsersChart(data.ids);
+                renderTopCountriesChart(data.ids);
+            });
+
+
+            /**
+             * Draw the a chart.js line chart with data from the specified view that
+             * overlays session data for the current week over session data for the
+             * previous week.
+             */
+            function renderWeekOverWeekChart(ids) {
+
+                // Adjust `now` to experiment with different days, for testing only...
+                var now = moment(); // .subtract(3, 'day');
+
+                var thisWeek = query({
+                    'ids': ids,
+                    'dimensions': 'ga:date,ga:nthDay',
+                    'metrics': 'ga:sessions',
+                    'start-date': moment(now).subtract(1, 'day').day(0).format('YYYY-MM-DD'),
+                    'end-date': moment(now).format('YYYY-MM-DD')
+                });
+
+                var lastWeek = query({
+                    'ids': ids,
+                    'dimensions': 'ga:date,ga:nthDay',
+                    'metrics': 'ga:sessions',
+                    'start-date': moment(now).subtract(1, 'day').day(0).subtract(1, 'week')
+                        .format('YYYY-MM-DD'),
+                    'end-date': moment(now).subtract(1, 'day').day(6).subtract(1, 'week')
+                        .format('YYYY-MM-DD')
+                });
+
+                Promise.all([thisWeek, lastWeek]).then(function (results) {
+
+                    var data1 = results[0].rows.map(function (row) { return +row[2]; });
+                    var data2 = results[1].rows.map(function (row) { return +row[2]; });
+                    var labels = results[1].rows.map(function (row) { return +row[0]; });
+
+                    labels = labels.map(function (label) {
+                        return moment(label, 'YYYYMMDD').format('ddd');
+                    });
+
+                    var data = {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Last Week',
+                                fillColor: 'rgba(220,220,220,0.5)',
+                                strokeColor: 'rgba(220,220,220,1)',
+                                pointColor: 'rgba(220,220,220,1)',
+                                pointStrokeColor: '#fff',
+                                data: data2
+                            },
+                            {
+                                label: 'This Week',
+                                fillColor: 'rgba(151,187,205,0.5)',
+                                strokeColor: 'rgba(151,187,205,1)',
+                                pointColor: 'rgba(151,187,205,1)',
+                                pointStrokeColor: '#fff',
+                                data: data1
+                            }
+                        ]
+                    };
+
+                    new Chart(makeCanvas('chart-1-container')).Line(data);
+                    generateLegend('legend-1-container', data.datasets);
+                });
+            }
+
+
+            /**
+             * Draw the a chart.js bar chart with data from the specified view that
+             * overlays session data for the current year over session data for the
+             * previous year, grouped by month.
+             */
+            function renderYearOverYearChart(ids) {
+
+                // Adjust `now` to experiment with different days, for testing only...
+                var now = moment(); // .subtract(3, 'day');
+
+                var thisYear = query({
+                    'ids': ids,
+                    'dimensions': 'ga:month,ga:nthMonth',
+                    'metrics': 'ga:users',
+                    'start-date': moment(now).date(1).month(0).format('YYYY-MM-DD'),
+                    'end-date': moment(now).format('YYYY-MM-DD')
+                });
+
+                var lastYear = query({
+                    'ids': ids,
+                    'dimensions': 'ga:month,ga:nthMonth',
+                    'metrics': 'ga:users',
+                    'start-date': moment(now).subtract(1, 'year').date(1).month(0)
+                        .format('YYYY-MM-DD'),
+                    'end-date': moment(now).date(1).month(0).subtract(1, 'day')
+                        .format('YYYY-MM-DD')
+                });
+
+                Promise.all([thisYear, lastYear]).then(function (results) {
+                    var data1 = results[0].rows.map(function (row) { return +row[2]; });
+                    var data2 = results[1].rows.map(function (row) { return +row[2]; });
+                    var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                    // Ensure the data arrays are at least as long as the labels array.
+                    // Chart.js bar charts don't (yet) accept sparse datasets.
+                    for (var i = 0, len = labels.length; i < len; i++) {
+                        if (data1[i] === undefined) data1[i] = null;
+                        if (data2[i] === undefined) data2[i] = null;
+                    }
+
+                    var data = {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Last Year',
+                                fillColor: 'rgba(220,220,220,0.5)',
+                                strokeColor: 'rgba(220,220,220,1)',
+                                data: data2
+                            },
+                            {
+                                label: 'This Year',
+                                fillColor: 'rgba(151,187,205,0.5)',
+                                strokeColor: 'rgba(151,187,205,1)',
+                                data: data1
+                            }
+                        ]
+                    };
+
+                    new Chart(makeCanvas('chart-2-container')).Bar(data);
+                    generateLegend('legend-2-container', data.datasets);
+                })
+                    .catch(function (err) {
+                        console.error(err.stack);
+                    });
+            }
+
+
+            /**
+             * Draw the a chart.js doughnut chart with data from the specified view that
+             * show the top 5 browsers over the past seven days.
+             */
+            function renderTopBrowsersChart(ids) {
+
+                query({
+                    'ids': ids,
+                    'dimensions': 'ga:browser',
+                    'metrics': 'ga:pageviews',
+                    'sort': '-ga:pageviews',
+                    'max-results': 5
+                })
+                    .then(function (response) {
+
+                        var data = [];
+                        var colors = ['#4D5360', '#949FB1', '#D4CCC5', '#E2EAE9', '#F7464A'];
+
+                        response.rows.forEach(function (row, i) {
+                            data.push({ value: +row[1], color: colors[i], label: row[0] });
+                        });
+
+                        new Chart(makeCanvas('chart-3-container')).Doughnut(data);
+                        generateLegend('legend-3-container', data);
+                    });
+            }
+
+
+            /**
+             * Draw the a chart.js doughnut chart with data from the specified view that
+             * compares sessions from mobile, desktop, and tablet over the past seven
+             * days.
+             */
+            function renderTopCountriesChart(ids) {
+                query({
+                    'ids': ids,
+                    'dimensions': 'ga:country',
+                    'metrics': 'ga:sessions',
+                    'sort': '-ga:sessions',
+                    'max-results': 5
+                })
+                    .then(function (response) {
+
+                        var data = [];
+                        var colors = ['#4D5360', '#949FB1', '#D4CCC5', '#E2EAE9', '#F7464A'];
+
+                        response.rows.forEach(function (row, i) {
+                            data.push({
+                                label: row[0],
+                                value: +row[1],
+                                color: colors[i]
+                            });
+                        });
+
+                        new Chart(makeCanvas('chart-4-container')).Doughnut(data);
+                        generateLegend('legend-4-container', data);
+                    });
+            }
+
+
+
+            function query(params) {
+                return new Promise(function (resolve, reject) {
+                    var data = new gapi.analytics.report.Data({ query: params });
+                    data.once('success', function (response) { resolve(response); })
+                        .once('error', function (response) { reject(response); })
+                        .execute();
+                });
+            }
+
+
+
+            function makeCanvas(id) {
+                var container = document.getElementById(id);
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+
+                container.innerHTML = '';
+                canvas.width = container.offsetWidth;
+                canvas.height = container.offsetHeight;
+                container.appendChild(canvas);
+
+                return ctx;
+            }
+
+
+
+            function generateLegend(id, items) {
+                var legend = document.getElementById(id);
+                legend.innerHTML = items.map(function (item) {
+                    var color = item.color || item.fillColor;
+                    var label = item.label;
+                    return '<li><i style="background:' + color + '"></i>' +
+                        escapeHtml(label) + '</li>';
+                }).join('');
+            }
+
+
+            // Set some global Chart.js defaults.
+            Chart.defaults.global.animationSteps = 60;
+            Chart.defaults.global.animationEasing = 'easeInOutQuart';
+            Chart.defaults.global.responsive = true;
+            Chart.defaults.global.maintainAspectRatio = false;
+
+
+
+            function escapeHtml(str) {
+                var div = document.createElement('div');
+                div.appendChild(document.createTextNode(str));
+                return div.innerHTML;
+            }
+
+        });
+    </script>
+
+</head>
+<!-- END HEAD -->
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner ">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <a href="https://exriz.com" target="_blank">
+                    <img src="~/assets/layouts/layout2/img/logo-default.png" alt="exriz" class="logo-default" />
+                </a>
+                <div class="menu-toggler sidebar-toggler">
+                    <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                </div>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN PAGE ACTIONS -->
+            <!-- DOC: Remove "hide" class to enable the page header actions -->
+            <div class="page-actions">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-circle btn-outline red dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-plus"></i>&nbsp;
+                        <span class="hidden-sm hidden-xs">Ekle&nbsp;</span>&nbsp;
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="javascript:;">
+                                <i class="icon-docs"></i> Yeni Post
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <i class="icon-layers"></i> Yeni Banner
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <i class="icon-doc"></i> Yeni Slider
+                            </a>
+                        </li>
+                        <li class="divider"> </li>
+                        <li>
+                            <a href="javascript:;">
+                                <i class="icon-flag"></i> Referanslar
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <i class="icon-users"></i> Müşteri Yorumları
+
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END PAGE ACTIONS -->
+            <!-- BEGIN PAGE TOP -->
+            <div class="page-top">
+
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                @{
+                                    var name = TempData["userInfo"] ?? "Admin";
+                                }
+                                <img alt="" class="img-circle" src="~/assets/layouts/layout2/img/avatar3_small.png" />
+                                <span class="username username-hide-on-mobile">@name</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="@Url.Action("UpdateSettings","SiteSettingManagament")">
+                                        <i class="icon-user"></i> Site Ayarlarım
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <i class="icon-flag"></i> Sayfa Analizi
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <i class="icon-users"></i> İletişim Formu Maillleri
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Login","Auth")">
+                                        <i class="icon-key"></i> Sistemden Çıkış
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END PAGE TOP -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar-wrapper">
+            <!-- END SIDEBAR -->
+            <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+            <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+            <div class="page-sidebar navbar-collapse collapse">
+                <!-- BEGIN SIDEBAR MENU -->
+                <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+                <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+                <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+                <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+                <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+                <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="nav-item start ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-home"></i>
+                            <span class="title">Ana Sayfa</span>
+                            <span class="arrow"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-diamond"></i>
+                            <span class="title">One Page Yönetimi</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Bölüm Tipi İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/OnePageManagament/AddAreaType" class="nav-link ">
+                                            <span class="title">One Page Bölüm Tipi Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/OnePageManagament/GetAreaType" class="nav-link ">
+                                            <span class="title">One Page Bölüm Tipi Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Bölüm  İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/OnePageManagament/AddArea" class="nav-link ">
+                                            <span class="title">One Page Bölüm Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/OnePageManagament/GetArea" class="nav-link ">
+                                            <span class="title">One Page Bölüm Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-puzzle"></i>
+                            <span class="title">Multi Page Yönetimi</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+
+                            <li class="nav-item ">
+                                <a href="/Admin/MultiPageManagament/AddPage" class="nav-link ">
+                                    <span class="title">Sayfa Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="/Admin/MultiPageManagament/GetPage" class="nav-link ">
+                                    <span class="title">Sayfa Görüntüleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="/Admin/MultiPageManagament/AddPageType" class="nav-link ">
+                                    <span class="title">Sayfa Tipi Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="/Admin/MultiPageManagament/GetPageType" class="nav-link ">
+                                    <span class="title">Sayfa Tipi Görüntüleme</span>
+                                </a>
+                            </li>
+
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-settings"></i>
+                            <span class="title">Blog İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Blog Kategori İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/BlogManagament/AddBlogCategory" class="nav-link ">
+                                            <span class="title">Blog Kategorisi Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/BlogManagament/GetBlogCategory" class="nav-link ">
+                                            <span class="title">Blog Kategorileri Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Blog Türü  İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/BlogManagament/AddBlog" class="nav-link ">
+                                            <span class="title">Blog Türü Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/BlogManagament/GetBlog" class="nav-link ">
+                                            <span class="title">Blog Türü Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Blog İçerik İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/BlogManagament/AddBlogPost" class="nav-link ">
+                                            <span class="title">Blog İçerikleri Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/BlogManagament/GetBlogPost" class="nav-link ">
+                                            <span class="title">Blog İçerikleri Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-bulb"></i>
+                            <span class="title">Dil ve Veri İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Dil İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/LanguageManagament/AddLanguage" class="nav-link ">
+                                            <span class="title">Dil Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/LanguageManagament/GetLanguage" class="nav-link ">
+                                            <span class="title">Dil Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Data İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/LanguageManagament/InsertDataVariable" class="nav-link ">
+                                            <span class="title">Dil Datası Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/LanguageManagament/GetDataVariable" class="nav-link ">
+                                            <span class="title">Dil Datası Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-briefcase"></i>
+                            <span class="title">Slider İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="/Admin/SliderManagament/AddSliderGallery" class="nav-link ">
+                                    <span class="title">Slider Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/SliderManagament/GetSliderGallery" class="nav-link ">
+                                    <span class="title">Slider Görüntüleme</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="?p=" class="nav-link nav-toggle">
+                            <i class="icon-wallet"></i>
+                            <span class="title">Banner İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="/Admin/BannerManagament/AddBanner" class="nav-link ">
+                                    <span class="title">Banner Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/BannerManagament/GetBanner" class="nav-link ">
+                                    <span class="title">Banner Görüntüleme</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-bar-chart"></i>
+                            <span class="title">Referans İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="/Admin/ReferenceManagament/AddReference" class="nav-link ">
+                                    <span class="title">Referans Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/ReferenceManagament/GetReference" class="nav-link ">
+                                    <span class="title">Referans Görüntüleme</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-pointer"></i>
+                            <span class="title">Müşteri Yorum İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="/Admin/CommentManagament/AddComment" class="nav-link ">
+                                    <span class="title">Yorum Ekleme</span>
+                                    <span class="arrow"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/CommentManagament/GetComment" class="nav-link ">
+                                    <span class="title">Yorum Görüntüleme</span>
+                                    <span class="arrow"></span>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-layers"></i>
+                            <span class="title">Menü İşlemleri</span>
+                            <span class="selected"></span>
+                            <span class="arrow open"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  active open">
+                                <a href="/Admin/MenuManagament/AddMenu" class="nav-link ">
+                                    <span class="title">Menü Tipi Ekleme</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/MenuManagament/GetMenu" class="nav-link ">
+                                    <span class="title">Menü Tipi Görüntüleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/MenuManagament/AddMenuItem" class="nav-link ">
+                                    <span class="title">Menü Elemanı Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/MenuManagament/GetMenuItem" class="nav-link ">
+                                    <span class="title">Menü Elemanı Görüntüleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/MenuManagament/AddGlobalUrl" class="nav-link ">
+                                    <span class="title">Dış Bağlantı Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/MenuManagament/GetGlobalUrl" class="nav-link ">
+                                    <span class="title">Dış Bağlantı Görüntüleme</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-feed"></i>
+                            <span class="title">Galeri İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="/Admin/GalleryManagament/AddGallery" class="nav-link ">
+                                    <span class="title">Galeri Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/GalleryManagament/GetGallery" class="nav-link ">
+                                    <span class="title">Galeri Görüntüleme</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class=" icon-wrench"></i>
+                            <span class="title">Footer Yönetimi</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Footer Obje Tipi İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/FooterManagament/AddFooterType" class="nav-link ">
+                                            <span class="title">Footer Obje Tipi Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/FooterManagament/GetFooterType" class="nav-link ">
+                                            <span class="title">Footer Obje Tipi Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Footer Obje İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/FooterManagament/AddFooterObject" class="nav-link ">
+                                            <span class="title">Footer Obje Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/FooterManagament/GetFooterObject" class="nav-link ">
+                                            <span class="title">Footer Obje Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-basket"></i>
+                            <span class="title">Sosyal Medya Yönetimi</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Sosyal Medya Tipi İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/SocialMediaManagament/AddSocialType" class="nav-link ">
+                                            <span class="title">Sosyal Medya Tipi Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/SocialMediaManagament/GetSocialType" class="nav-link ">
+                                            <span class="title">Sosyal Medya Tipi Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <span class="title">Sosyal Medya İşlemleri</span>
+                                    <span class="arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li class="nav-item ">
+                                        <a href="/Admin/SocialMediaManagament/AddSocialObject" class="nav-link ">
+                                            <span class="title">Sosyal Medya Ekleme</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="/Admin/SocialMediaManagament/GetSocialObject" class="nav-link ">
+                                            <span class="title">Sosyal Medya Görüntüleme</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-user"></i>
+                            <span class="title">Kullanıcı İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="/Admin/UserManagament/AddUser" class="nav-link ">
+                                    <i class="icon-clock"></i>
+                                    <span class="title">Kullanıcı Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/UserManagament/GetUser" class="nav-link ">
+                                    <i class="icon-check"></i>
+                                    <span class="title">Kullanıcı Görüntüleme</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-docs"></i>
+                            <span class="title">Tema İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="/Admin/ThemeManagament/AddTheme" class="nav-link ">
+                                    <i class="icon-user"></i>
+                                    <span class="title">Tema Ekleme</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="/Admin/ThemeManagament/GetTheme" class="nav-link ">
+                                    <i class="icon-user-female"></i>
+                                    <span class="title">Tema Görüntüleme</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="/Admin/SiteSettingManagament/UpdateSettings" class="nav-link nav-toggle">
+                            <i class="icon-social-dribbble"></i>
+                            <span class="title">Site Ayarları</span>
+                            <span class="arrow"></span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-settings"></i>
+                            <span class="title">İletişim Formu İşlemleri</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="page_cookie_consent_1.html" class="nav-link ">
+                                    <span class="title">Gelenler</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="page_cookie_consent_2.html" class="nav-link ">
+                                    <span class="title">Gönderilenler</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="page_system_coming_soon.html" class="nav-link " target="_blank">
+                                    <span class="title">Silinenler</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-folder"></i>
+                            <span class="title">Diğer</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item">
+                                <a href="javascript:;" class="nav-link nav-toggle">
+                                    <i class="icon-settings"></i> Site Haritası Oluştur
+                                    <span class="arrow"></span>
+                                </a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a href="?p=dashboard-2" target="_blank" class="nav-link">
+                                    <i class="icon-globe"></i> Arrow Toggle
+                                    <span class="arrow nav-toggle"></span>
+                                </a>
+
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+            <!-- END SIDEBAR -->
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        @RenderBody()
+
+
+    </div>
+
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            2018 &copy; Exriz Yazılım
+            <a target="_blank" href="https://exriz.com"></a> &nbsp;|&nbsp;
+            <a href="https://exriz.com" title="Exriz Yazılım Kurumsal Web Siteleri 1000 ₺'den başlayan fiyatlarla" target="_blank">En Uygunu, En Kalitesi</a>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+        <!-- BEGIN QUICK NAV -->
+        <nav class="quick-nav">
+            <a class="quick-nav-trigger" href="#0">
+                <span aria-hidden="true"></span>
+            </a>
+            <ul>
+                <li>
+                    <a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank" class="active">
+                        <span>Purchase Metronic</span>
+                        <i class="icon-basket"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/reviews/4021469?ref=keenthemes" target="_blank">
+                        <span>Customer Reviews</span>
+                        <i class="icon-users"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://keenthemes.com/showcast/" target="_blank">
+                        <span>Showcase</span>
+                        <i class="icon-user"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://keenthemes.com/metronic-theme/changelog/" target="_blank">
+                        <span>Changelog</span>
+                        <i class="icon-graph"></i>
+                    </a>
+                </li>
+            </ul>
+            <span aria-hidden="true" class="quick-nav-bg"></span>
+        </nav>
+        <div class="quick-nav-overlay"></div>
+        <!-- END QUICK NAV -->
+        <!--[if lt IE 9]>
+            <script src="~/assets/global/plugins/respond.min.js"></script>
+            <script src="~/assets/global/plugins/excanvas.min.js"></script>
+            <script src="~/assets/global/plugins/ie8.fix.min.js"></script>
+        <![endif]-->
+    </div>
+
+    <script src="~/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="~/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+@RenderSection("extraScript",false)
+</body>
+</html>

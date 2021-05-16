@@ -1,0 +1,11 @@
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\bin\Debug\netcoreapp2.0\ExrizCorpPanel.deps.json
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\bin\Debug\netcoreapp2.0\ExrizCorpPanel.runtimeconfig.json
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\bin\Debug\netcoreapp2.0\ExrizCorpPanel.runtimeconfig.dev.json
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\bin\Debug\netcoreapp2.0\ExrizCorpPanel.dll
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\bin\Debug\netcoreapp2.0\ExrizCorpPanel.pdb
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\obj\Debug\netcoreapp2.0\ExrizCorpPanel.csprojResolveAssemblyReference.cache
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\obj\Debug\netcoreapp2.0\ExrizCorpPanel.csproj.CoreCompileInputs.cache
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\obj\Debug\netcoreapp2.0\ExrizCorpPanel.AssemblyInfoInputs.cache
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\obj\Debug\netcoreapp2.0\ExrizCorpPanel.AssemblyInfo.cs
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\obj\Debug\netcoreapp2.0\ExrizCorpPanel.dll
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel\obj\Debug\netcoreapp2.0\ExrizCorpPanel.pdb

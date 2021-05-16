@@ -1,0 +1,181 @@
+﻿@model ExrizCorpPanel.UI.Areas.Admin.Models.CustomModels.RequestTypes.SiteDetailRequest
+
+@{
+    ViewData["Title"] = "AddSettings";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var result = TempData["result"];
+}
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content" style="min-height: 1434px;">
+        <!-- BEGIN PAGE HEADER-->
+        <!-- BEGIN THEME PANEL -->
+        <!-- END THEME PANEL -->
+        <h1 class="page-title">
+            Exriz Kurumsal Panel
+        </h1>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    @*<i class="icon-home"></i>*@
+                    <a>Blog İşlemleri</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+
+                <li>
+                    @*<i class="icon-eye"></i>*@
+                    <a href="@Url.Action("AddBlog","BlogManagament")">Blog Türü Ekle</a>
+                </li>
+            </ul>
+            <div class="page-toolbar">
+
+            </div>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="note note-info">
+
+
+            @{
+
+                if (Convert.ToInt32(result) == 1)
+                {
+                    <div class="note note-success">
+                        <h3>İşlem Durumu</h3>
+                        <p>
+                            Blog kayıt işlemi başarılı
+                            <a class="btn btn-small red btn-outline" href="#" target="_blank">listelemeye git</a>
+                        </p>
+                    </div>
+                }
+                else if (Convert.ToInt32(result) == -1)
+                {
+                    <div class="note note-danger">
+                        <h3>İşlem Durumu</h3>
+                        <p>
+                            Blog kayıt işlemi başarısız
+                            <a class="btn btn-small red btn-outline" href="#" target="_blank">hatayı bildir</a>
+                        </p>
+                    </div>
+                }
+                else
+                {
+
+                }
+            }
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Blog Ekle</span>
+
+                    </div>
+                    @*<div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-cloud-upload"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-wrench"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-trash"></i>
+                            </a>
+                        </div>*@
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    <form enctype="multipart/form-data" asp-controller="SiteSettingManagament" asp-action="postAddSettings" class="form-horizontal">
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label asp-for="SiteName" class="col-md-3 control-label">Site İsmi</label>
+                                <div class="col-md-4">
+                                    <input asp-for="SiteName" type="text" class="form-control" placeholder="Site Adı" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" asp-for="SiteDesc">Site Açıklaması</label>
+                                <div class="col-md-4">
+                                    <input asp-for="SiteDesc" class="form-control" placeholder="Site Açıklaması" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" asp-for="SiteDesc">Site Büyük Logo</label>
+                                <div class="col-md-4">
+                                    <input type="file" asp-for="SiteBigLogo" class="form-control" placeholder="Site Büyük Logosu" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" asp-for="SiteDesc">Site Küçük Logo</label>
+                                <div class="col-md-4">
+                                    <input type="file" asp-for="SiteSmallLogo" class="form-control" placeholder="Site Küçük Logosu" />
+
+                                </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" asp-for="GsmNo">Cep Telefonu  Numarası</label>
+                                <div class="col-md-4">
+                                    <input asp-for="GsmNo" class="form-control" placeholder="Gsm" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" asp-for="TelNo">Sabit Telefon Numarası</label>
+                                <div class="col-md-4">
+                                    <input asp-for="TelNo" class="form-control" placeholder="Sabit Telefon Numarası" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" asp-for="SiteAddress">Adres Bilgisi</label>
+                                <div class="col-md-4">
+                                    <input asp-for="SiteAddress" class="form-control" placeholder="Adres Bilgisi" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" asp-for="SiteTitle">Site Başlığı (Meta Tag)</label>
+                                <div class="col-md-4">
+                                    <input asp-for="SiteTitle" class="form-control" placeholder="Site Başlığı (Meta Tag)" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" asp-for="SiteTags">Site Anahtar Kelimeleri (Seo)</label>
+                                <div class="col-md-4">
+                                    <input asp-for="SiteTags" class="form-control" placeholder="Site Anahtar Kelimeleri (Seo)" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" asp-for="SiteTagLine">Site Anahtar Cümleleri (Meta Tag)</label>
+                                <div class="col-md-4">
+                                    <input asp-for="SiteTagLine" class="form-control" placeholder="Site Anahtar Cümleleri (Meta Tag)" />
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-4">
+                                    <button type="submit" class="btn green">Kaydet</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- END CONTENT BODY -->
+</div>

@@ -1,0 +1,89 @@
+﻿@model ExrizCorpPanel.UI.Models.CustomModels.LayoutModel
+
+<footer class="main-footer">
+    <div class="auto-container">
+        <!--Widgets Section-->
+        <div class="widgets-section">
+            <div class="row clearfix">
+
+                <!--Column-->
+                <div class="column col-lg-3 col-md-6 col-sm-12">
+                    <div class="footer-widget logo-widget">
+                        <div class="widget-content">
+                            <div class="footer-logo">
+                                <a href="index.html"><img class="lazy-image" src="/uploads/siteDetails/transperent.png" data-src="/uploads/siteDetails/transperent.png" alt="" width="150" /></a>
+                            </div>
+                            <div class="text">Afet ve acil durumların meydana getirmesi muhtemel maddi ve manevi zararı en aza indirme çalışmaları yapmak üzere kurduğumuz; kısa adı AFAKDER olan Afet Arama ve Kurtarma Derneği ; 18.Eylül.2019 tarihi itibariyle faaliyetlerine başlamıştır. </div>
+                            <ul class="social-links clearfix">
+                                <li><a href="@Model.socialMedia.FirstOrDefault(x=>x.ProfileName=="facebook").Smprofile"><span class="fab fa-facebook-f"></span></a></li>
+                                <li><a href="@Model.socialMedia.FirstOrDefault(x=>x.ProfileName=="twitter").Smprofile"><span class="fab fa-twitter"></span></a></li>
+                                <li><a href="@Model.socialMedia.FirstOrDefault(x=>x.ProfileName=="instagram").Smprofile"><span class="fab fa-instagram"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Column-->
+                <div class="column col-lg-3 col-md-6 col-sm-12">
+                    <div class="footer-widget links-widget">
+                        <div class="widget-content">
+                            <h3>Site İçi Linkler</h3>
+                            <ul>
+                                <li><a href="/MultiPage/Categories/etkinlikler">Etkinliklerimiz</a></li>
+                                <li><a href="/MultiPage/Pages/hakkmzda">Hakkımızda</a></li>
+                                <li><a href="/Blog/Posts/">Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Column-->
+                <div class="column col-lg-3 col-md-6 col-sm-12">
+                    <div class="footer-widget info-widget">
+                        <div class="widget-content">
+                            <h3>İletişim</h3>
+                            <ul class="contact-info">
+                                <li> Gsm:  0544 911 AFAK</li>
+                                <li><a href="mailto:bilgi@afakder.org">bilgi@afakder.org</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Column-->
+                <div class="column col-lg-3 col-md-6 col-sm-12">
+                    <div class="footer-widget news-widget">
+                        <div class="footer-widget links-widget">
+                            <div class="widget-content">
+                                <h3>Yardımcı Linkler ve Telefonlar</h3>
+                                <ul>
+                                    <li><a href="http://www.koeri.boun.edu.tr/scripts/lst9.asp">Kandilli Rasathanesi</a></li>
+                                    <li><a href="#">Alo Polis : 155 </a></li>
+                                    <li><a href="#">Alo Jandarma : 156 </a></li>
+                                    <li><a href="#">Alo İtfaiye : 110</a></li>
+                                    <li><a href="#">Alo Ambulans : 112</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+         
+
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="auto-container">
+
+            <!--Scroll to top-->
+            <div class="clearfix">
+                <div class="copyright">AFAKDER  &copy;  2020 Tüm Hakları Saklıdır</div>
+              
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,12 @@
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\bin\Release\netcoreapp2.0\ExrizCorpPanel.Core.deps.json
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\bin\Release\netcoreapp2.0\ExrizCorpPanel.Core.dll
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\bin\Release\netcoreapp2.0\ExrizCorpPanel.Core.pdb
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\bin\Release\netcoreapp2.0\ExrizCorpPanel.Data.dll
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\bin\Release\netcoreapp2.0\ExrizCorpPanel.Data.pdb
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\obj\Release\netcoreapp2.0\ExrizCorpPanel.Core.csprojAssemblyReference.cache
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\obj\Release\netcoreapp2.0\ExrizCorpPanel.Core.csproj.CoreCompileInputs.cache
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\obj\Release\netcoreapp2.0\ExrizCorpPanel.Core.AssemblyInfoInputs.cache
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\obj\Release\netcoreapp2.0\ExrizCorpPanel.Core.AssemblyInfo.cs
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\obj\Release\netcoreapp2.0\ExrizCorpPanel.Core.csproj.CopyComplete
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\obj\Release\netcoreapp2.0\ExrizCorpPanel.Core.dll
+C:\Users\tubas\Desktop\exriz\ExrizCorpPanel\ExrizCorpPanel.Core\obj\Release\netcoreapp2.0\ExrizCorpPanel.Core.pdb

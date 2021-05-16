@@ -1,0 +1,123 @@
+﻿@model ExrizCorpPanel.UI.Models.CustomModels.BlogPostModel
+@{
+    Layout = (ViewBag.LayoutModel as ExrizCorpPanel.UI.Models.CustomModels.LayoutModel).siteDetail.LayoutName;
+}
+
+
+<!-- Page Banner Section -->
+<section class="page-banner">
+    <div class="image-layer lazy-image"  data-bg="url('@Model.ImageUrl')" style="background-image: url('@Model.ImageUrl')"></div>
+    <div class="bottom-rotten-curve"></div>
+
+    <div class="auto-container">
+        <h1>@Model.Title</h1>
+        <ul class="bread-crumb clearfix">
+            <li><a href="index.html">Anasayfa</a></li>
+            <li class="active">@Model.Title</li>
+        </ul>
+    </div>
+
+</section>
+<!--End Banner Section -->
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!--Content Side / Blog Sidebar-->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <!--Blog Posts-->
+                <div class="blog-post-detail">
+                    <div class="inner">
+                        <div class="post-meta">
+                            <ul class="clearfix">
+                                @if (Model.Date!=null)
+	{
+                                <li><a href="#"><span class="icon fa fa-calendar-week"></span> @Model.Date.Value</a></li>
+	}
+                                
+                            </ul>
+                        </div>
+                        <h2>@Model.Title</h2>
+
+                        <div class="content">
+                         @Html.Raw(Model.Content)
+                        </div>
+                    </div>
+
+                    <div class="post-share-options clearfix">
+                        <div class="pull-left">
+                            <p>Etiketler : </p>
+                            <ul class="tags">
+                                @if (Model.Tags!=null)
+                                {
+                                    @foreach (var item in Model.Tags)
+                                    {
+
+                                        <li><a href="#">@item</a></li>
+                                    }
+                                }
+                                else
+                                {
+                                        <li>bu post için eklenmiş bir tag yok.</li>
+                                }
+
+                            </ul>
+                        </div>
+
+                        <div class="social-links pull-right">
+                            <div class="sharethis-inline-share-buttons"></div>                        
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Comments Area -->
+                
+            </div>
+
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar">
+
+                    <!-- Category Widget -->
+                    <div class="sidebar-widget categories">
+                        <h3 class="sidebar-title">Blog Kategorileri</h3>
+                        <div class="widget-content">
+                            <ul>
+                                @foreach (var item in Model.blogCategories)
+                                {
+                                    if (item.Id == Model.CategoryId)
+                                    {
+                                        <li class="current"><a>@item.FriendlyName</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a>@item.FriendlyName</a></li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Post Widget -->
+                    <div class="sidebar-widget popular-posts">
+                        <h3 class="sidebar-title">Son Bloglar</h3>
+                        <div class="widget-content">
+                            @foreach (var item in Model.recentPosts)
+                            {
+                                <div class="news-post">
+                                    <div class="post-thumb"><a href="/Blog/Posts/@item.Slug"><img class="lazy-image" src="@item.Image" data-src="@item.Image" alt=""></a></div>
+                                    <div class="date"><span class="fa fa-calendar-alt"></span> @item.Date</div>
+                                    <h4><a href="/Blog/Posts/@item.Slug">@item.Title </a></h4>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,194 @@
+﻿@model ExrizCorpPanel.UI.Models.CustomModels.LayoutModel
+
+
+@{
+
+    var dd = Model;
+    var a = 1;
+}
+
+<header class="main-header">
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="auto-container">
+            <div class="inner clearfix">
+                <div class="top-left">
+                    <ul class="social-links clearfix">
+                        <li class="social-title">Sosyal Medya Hesaplarımız:</li>
+                        <li><a href="@Model.socialMedia.FirstOrDefault(x=>x.ProfileName=="facebook").Smprofile"><span class="fab fa-facebook-f"></span></a></li>
+                        <li><a href="@Model.socialMedia.FirstOrDefault(x=>x.ProfileName=="twitter").Smprofile"><span class="fab fa-twitter"></span></a></li>
+                        <li><a href="@Model.socialMedia.FirstOrDefault(x=>x.ProfileName=="instagram").Smprofile"><span class="fab fa-instagram"></span></a></li>
+                    </ul>
+                </div>
+
+                <div class="top-right">
+                    <ul class="info clearfix">
+                        <li class="search-btn"><button type="button" class="theme-btn search-toggler"><span class="fa fa-search"></span></button></li>
+                        <li><a href="tel:12345615523"><span class="icon fa fa-phone-alt"></span> GSM: &nbsp;0544 911 AFAK </a></li>
+                        <li><a href="mailto:info@templatepath.com"><span class="icon fa fa-envelope"></span> Email: &nbsp;bilgi@afakder.org</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Upper -->
+    <div class="header-upper">
+        <div class="auto-container">
+            <div class="inner-container clearfix">
+                <!--Logo-->
+                <div class="logo-box">
+                    <div class="logo"><a href="index.html" title="LoveUs - Charity and Fundraising HTML Template"><img src="@Model.siteDetail.LogoUrl" class="bigLogo" alt="LoveUs - Charity and Fundraising HTML Template" title="LoveUs - Charity and Fundraising HTML Template"></a></div>
+                </div>
+
+                <!--Nav Box-->
+                <div class="nav-outer clearfix">
+                    <!--Mobile Navigation Toggler-->
+                    <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
+
+                    <!-- Main Menu -->
+                    <nav class="main-menu navbar-expand-md navbar-light">
+                        <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                            <ul class="navigation clearfix">
+                                @foreach (var item in Model.menu)
+                                {
+                                    @if (item.Url == "/")
+                                    {
+                                        <li><a href="@item.Url">@item.Title</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="/@item.Url">@item.Title</a></li>
+                                    }
+
+                                }
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- Main Menu End-->
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Header Upper-->
+    <!-- Sticky Header  -->
+    <div class="sticky-header">
+        <div class="auto-container clearfix">
+            <!--Logo-->
+            <div class="logo pull-left">
+                <a href="index.html" title=""><img src="@Model.siteDetail.SmallLogoImageUrl" alt="" title=""></a>
+            </div>
+            <!--Right Col-->
+            <div class="pull-right">
+                <!-- Main Menu -->
+                <nav class="main-menu clearfix">
+                    <!--Keep This Empty / Menu will come through Javascript-->
+
+                    
+                </nav><!-- Main Menu End-->
+            </div>
+        </div>
+    </div><!-- End Sticky Menu -->
+    <!-- Mobile Menu  -->
+    <div class="mobile-menu">
+        <div class="menu-backdrop"></div>
+        <div class="close-btn"><span class="icon flaticon-cancel"></span></div>
+
+        <nav class="menu-box mCustomScrollbar _mCS_1">
+            <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" tabindex="0" style="max-height: 404px;">
+                <div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+                    <div class="nav-logo"><a href="index.html"><img src="images/logo.png" alt="" title="" class="mCS_img_loaded"></a></div>
+                    <div class="menu-outer">
+                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                        <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                            <ul class="navigation clearfix">
+                                <li class="current dropdown">
+                                    <a href="index.html">Home</a>
+                                    <ul>
+                                        <li><a href="index.html">Home page 01</a></li>
+                                        <li><a href="index-2.html">Home page 02</a></li>
+                                        <li><a href="index-3.html">Home page 03</a></li>
+                                        <li><a href="index-4.html">Home page 04</a></li>
+                                        <li><a href="index-5.html">Home page 05</a></li>
+                                        <li><a href="index-6.html">Home page 06</a></li>
+                                        <li><a href="index-7.html">Home page 07</a></li>
+                                        <li><a href="index-8.html">Home page 08</a></li>
+                                        <li class="dropdown">
+                                            <a href="index.html">Header Styles</a>
+                                            <ul>
+                                                <li><a href="index.html">Header Style One</a></li>
+                                                <li><a href="index-2.html">Header Style Two</a></li>
+                                                <li><a href="index-3.html">Header Style Three</a></li>
+                                            </ul>
+                                            <div class="dropdown-btn"><span class="fa fa-angle-right"></span></div>
+                                        </li>
+                                    </ul>
+                                    <div class="dropdown-btn"><span class="fa fa-angle-right"></span></div>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="about.html">About</a>
+                                    <ul>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="services.html">Our Services</a></li>
+                                        <li><a href="volunteers.html">Our Volunteers</a></li>
+                                        <li><a href="faq.html">Faq's</a></li>
+                                    </ul>
+                                    <div class="dropdown-btn"><span class="fa fa-angle-right"></span></div>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="causes.html">Causes</a>
+                                    <ul>
+                                        <li><a href="causes.html">Causes</a></li>
+                                        <li><a href="cause-single.html">Cause Details</a></li>
+                                    </ul>
+                                    <div class="dropdown-btn"><span class="fa fa-angle-right"></span></div>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="donate.html">Pages</a>
+                                    <ul>
+                                        <li><a href="events.html">Events</a></li>
+                                        <li><a href="event-single.html">Event Details</a></li>
+                                        <li><a href="portfolio.html">Portfolio</a></li>
+                                        <li class="dropdown">
+                                            <a href="shop.html">Shop</a>
+                                            <ul>
+                                                <li><a href="shop.html">Products</a></li>
+                                                <li><a href="product-details.html">Product Details</a></li>
+                                                <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                            </ul>
+                                            <div class="dropdown-btn"><span class="fa fa-angle-right"></span></div>
+                                        </li>
+                                        <li><a href="donate.html">Make Donation</a></li>
+                                    </ul>
+                                    <div class="dropdown-btn"><span class="fa fa-angle-right"></span></div>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="blog.html">Blog</a>
+                                    <ul>
+                                        <li><a href="blog.html">Our Blog</a></li>
+                                        <li><a href="blog-single.html">Blog Single</a></li>
+                                    </ul>
+                                    <div class="dropdown-btn"><span class="fa fa-angle-right"></span></div>
+                                </li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Social Links-->
+                    <div class="social-links">
+                        <ul class="clearfix">
+                            <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                            <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
+                            <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
+                            <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+                            <li><a href="#"><span class="fab fa-youtube"></span></a></li>
+                        </ul>
+                    </div>
+                </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 288px; top: 0px; display: block; max-height: 394px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div>
+            </div>
+        </nav>
+    </div><!-- End Mobile Menu -->
+</header>

@@ -1,0 +1,118 @@
+﻿@model ExrizCorpPanel.UI.Models.CustomModels.LayoutModel
+
+<footer class="footer-wrapper">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- col-md-8 -->
+            <div class="col-md-8 col-sm-12">
+                <!-- footer-contact -->
+                <div class="footer-contact">
+                    <span>
+                        @if (Model.siteDetail.TelNo != null)
+                    {
+                        <span>@Model.siteDetail.TelNo    </span>
+                }
+                        @if (Model.siteDetail.GsmNo != null)
+                    {
+                        <span>@Model.siteDetail.GsmNo</span>
+                }
+
+
+
+
+                    </span>
+                    <span>
+                        @if (Model.siteDetail.SiteAddress != null)
+                    {
+                        <span>@Model.siteDetail.SiteAddress</span>
+                }
+                    </span>
+                    @if (Model.siteDetail.SiteEmail != null)
+                {
+                    <span>E-mail: <a href="https://demo.themehippo.com/cdn-cgi/l/email-protection#90fdf1f9fcd0f4f5fdfffcf9fefbbef3fffd"><span class="__cf_email__" data-cfemail="e38e828a8fa387868e8c8f8a8d88cd808c8e">@Model.siteDetail.SiteEmail</span> </a></span>
+            }
+                </div>
+                <!-- /footer-contact -->
+            </div>
+            <!-- /col-md-8 -->
+            <!-- col-md-4 -->
+            <div class="col-md-4 col-sm-12">
+                <!-- social-icon -->
+                <div class="social-icon less-margin-top">
+                    <ul>
+                        @foreach (var item in Model.socialMedia)
+                    {
+                        switch (item.TypeName)
+                        {
+                            case "facebook":
+                                <li>
+                                    <!-- facebook -->
+                                    <a href="@item.Smprofile" title="Facebook" target="_blank"><i class="fa fa-facebook"> </i></a>
+                                    <!-- /facebook -->
+                                </li>
+                            break;
+                        case "twitter":
+                            <li>
+                                <!-- twitter -->
+                                <a href="@item.Smprofile" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <!-- /twitter -->
+                            </li>
+                        break;
+                    case "instagram":
+                        <li>
+                            <!-- google-plus -->
+                            <a href="@item.Smprofile" title="Google plus" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <!-- /google-plus -->
+                        </li>
+                    break;
+                case "google":
+                    <li>
+                        <!-- google-plus -->
+                        <a href="@item.Smprofile" title="Google plus" target="_blank"><i class="fa fa-google-plus"></i></a>
+                        <!-- /google-plus -->
+                    </li>
+
+                break;
+
+            case "youtube":
+                <li>
+                    <!-- youtube -->
+                    <a href="@item.Smprofile" title="YouTube" target="_blank"><i class="fa fa-youtube"></i></a>
+                    <!-- /youtube-play -->
+                </li>
+
+            break;
+
+        case "linkedin":
+            <li>
+                <!-- linkedin -->
+                <a href="@item.Smprofile" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                <!-- /linkedin -->
+            </li>
+        break;
+    case "flickr":
+        <li>
+            <!-- flickr -->
+            <a href="@item.Smprofile" title="Flickr" target="_blank"><i class="fa fa-flickr"></i></a>
+            <!-- /flickr -->
+        </li>
+    break;
+
+}
+}
+                    </ul>
+                </div>
+                <!-- /social-icon -->
+            </div>
+            <!-- /col-md-4 -->
+        </div>
+        <!-- /row -->
+        <!-- row -->
+        @Html.Partial("~/Views/Decor/Partials/_ExrizBand.cshtml")
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</footer>
+

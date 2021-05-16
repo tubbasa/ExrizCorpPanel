@@ -1,0 +1,300 @@
+﻿@model ExrizCorpPanel.UI.Models.CustomModels.MainModel
+@{
+    Layout = (ViewBag.LayoutModel as ExrizCorpPanel.UI.Models.CustomModels.LayoutModel).siteDetail.LayoutName;
+    var id = 0;
+
+}
+
+<!-- Banner Section -->
+<section class="banner-section style-two">
+    <div class="banner-carousel love-carousel owl-theme owl-carousel" data-options='{"loop": true, "margin": 0, "autoheight":true, "lazyload":true, "nav": true, "dots": true, "autoplay": true, "autoplayTimeout": 6000, "smartSpeed": 300, "responsive":{ "0" :{ "items": "1" }, "768" :{ "items" : "1" } , "1000":{ "items" : "1" }}}'>
+        <!-- Slide Item -->
+        @foreach (var item in Model.sliders)
+        {
+            <div class="slide-item">
+                <div class="image-layer lazy-image" style="background-image: url('@item.ImageUrl')"></div>
+
+                <div class="auto-container">
+                    <div class="content-box">
+                        <h2>@item.SliderName</h2>
+                        <div class="text">@item.SliderContent </div>
+                        <div class="btn-box">@*<a href="donate.html" class="theme-btn btn-style-one"><span class="btn-title">Donate Now</span></a>*@</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</section>
+<!--End Banner Section -->
+<!--Video Section-->
+@if (Model.areas.FirstOrDefault(x => x.rowNumber == 1) != null)
+{
+    var area = Model.areas.FirstOrDefault(x => x.rowNumber == 1 && x.typeId == 0);
+
+    <section class="video-section style-two">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Text Column-->
+                <div class="text-column col-lg-6 col-md-12 col-sm-12">
+                    <div class="inner">
+                        <div class="sec-title">
+                            <h2>@area.Title</h2>
+                            <div class="text">@area.Content</div>
+                        </div>
+                    </div>
+                </div>
+                <!--Image Column-->
+                <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                    <div class="inner wow fadeInLeft" data-wow-delay="0ms">
+                        <figure class="image-box">
+                            <img class="lazy-image" src="@area.imageUrl" data-src="@area.imageUrl" alt="">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+<!--Causes Section Two-->
+@if (Model.areas.Where(x => x.typeName == "amaclarimiz").Count() > 0)
+{
+    var areas = Model.areas.Where(x => x.typeName == "amaclarimiz");
+
+
+    <section class="causes-section-two">
+        <div class="auto-container">
+            @if (Model.areas.FirstOrDefault(x => x.rowNumber == 2 && x.typeId == 0) != null)
+            {
+                var area = Model.areas.FirstOrDefault(x => x.rowNumber == 2 && x.typeId == 0);
+                <div class="sec-title centered">
+                    <h2>@area.Title</h2>
+                    <div class="text">@area.Content</div>
+                </div>
+            }
+
+
+            <div class="row clearfix">
+
+                @foreach (var item in areas)
+                {
+                    <div class="cause-block-two col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box wow fadeInUp" data-wow-delay="0ms">
+                            <div class="image-box">
+                                <figure class="image"><a href="cause-single.html"><img class="lazy-image" src="@item.imageUrl" data-src="@item.imageUrl" alt=""></a></figure>
+                            </div>
+                            <div class="lower-content">
+                                <h3><a href="cause-single.html">@item.Title</h3>
+                                <div class="text">@item.Content</div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </section>
+}
+
+<!--Mission Vision Section-->
+
+<section class="mission-vision">
+    <div class="circle-one"></div>
+    <div class="circle-two"></div>
+
+    <div class="auto-container">
+        @if (Model.areas.FirstOrDefault(x => x.rowNumber == 3 && x.typeId == 0) != null)
+        {
+            var area = Model.areas.FirstOrDefault(x => x.rowNumber == 3 && x.typeId == 0);
+            <div class="mission">
+                <div class="row clearfix">
+                    <div class="text-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner">
+                            <div class="sec-title">
+                                <h2>@area.Title</h2>
+                                <div class="text">@area.Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                            <div class="inner">
+                                <div class="image wow fadeInRight" data-wow-delay="0ms"><img class="lazy-image" src="@area.imageUrl" data-src="@area.imageUrl" alt=""></div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        }
+        @if (Model.areas.FirstOrDefault(x => x.rowNumber == 4 && x.typeId == 0) != null)
+        {
+            var area = Model.areas.FirstOrDefault(x => x.rowNumber == 4 && x.typeId == 0);
+            <div class="vision">
+                <div class="row clearfix">
+                    <div class="text-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner">
+                            <div class="sec-title">
+                                <h2>@area.Title</h2>
+                                <div class="text">@area.Content</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner">
+                            <div class="image wow fadeInLeft" data-wow-delay="0ms"><img class="lazy-image" src="@area.imageUrl" data-src="@area.imageUrl" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</section>
+
+@if (Model.areas.FirstOrDefault(x => x.rowNumber == 5) != null)
+{
+    var area = Model.areas.FirstOrDefault(x => x.rowNumber == 5);
+    <section class="call-to-action">
+
+        <!--Image Layer-->
+        <div class="image-layer lazy-image" data-bg="url('@area.imageUrl')" style="background-image: url('@area.imageUrl')" data-was-processed="true"></div>
+
+        <div class="auto-container">
+            <div class="inner">
+                <div class="sec-title centered">
+                    <h2>@area.Title</h2>
+                    <div class="text">@area.Content</div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<!--Call To Action Section-->
+<!--Events Section-->
+@if (Model.pages.Where(x => x.PageTypeName == "Etkinlikler") != null)
+{
+    var pages = Model.pages.Where(x=>x.PageTypeName =="Etkinlikler");
+
+    <section class="events-section">
+        <div class="auto-container">
+            <div class="sec-title centered">
+            
+                <h2>Etkinliklerimiz</h2>
+                <div class="text">Katılmak istediğiniz etkinlkler için lütfen tarafımıza ulaşınız. </div>
+            </div>
+
+            <div class="row clearfix">
+                @foreach (var item in pages)
+                {  
+                    <div class="event-block-three col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box wow fadeInUp" data-wow-delay="0ms">
+                            <div class="image-box">
+                                <figure class="image"><a href="event-single.html"><img class="lazy-image" src="@item.ImageUrl" data-src="@item.ImageUrl" alt=""></a></figure>
+                            </div>
+                            <div class="lower-content">
+                                <h3><a href="/MultiPage/Pages/@item.Url">@item.PageName</a></h3>
+                              
+                                <div class="link-box"><a href="/MultiPage/Pages/@item.Url" class="theme-btn btn-style-two"><span class="btn-title">İncele</span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </section>
+}
+
+
+<!--Team Section-->
+<section class="team-section style-two">
+    <div class="bottom-rotten-curve"></div>
+
+    <div class="auto-container">
+
+        <div class="sec-title centered">
+       @{ var bod = @Model.stringResources.FirstOrDefault(x => x.ResourceSystemName == "MainPage.Bod");}
+            <div class="sub-title">Kahraman takımımızla tanışın</div>
+            <h2>@bod.ResourceContent</h2>
+        </div>
+
+        <div class="row clearfix">
+            @if (Model.pages.Where(x => x.PageTypeName == "bod") != null)
+            {
+                var pages = Model.pages.Where(x => x.PageTypeName == "bod");
+                foreach (var item in pages)
+                {
+                    <div class="team-block-two col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box wow fadeInUp" data-wow-delay="0ms">
+                            <figure class="image-box"><a href="#"><img class="lazy-image" src="@item.ImageUrl" data-src="@item.ImageUrl" alt=""></a></figure>
+                            <div class="info-box">
+                                <h4 class="name"><a href="#">@item.Title</a></h4>
+                                <span class="designation">@item.SubTitle</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+            <!--Team Block-->
+
+        </div>
+
+    </div>
+</section>
+
+<!--News Section-->
+<section class="news-section">
+    <div class="top-rotten-curve"></div>
+    <div class="auto-container">
+        @{ var blog = Model.stringResources.FirstOrDefault(x => x.ResourceSystemName == "MainPage.Blog" && x.LangId==3);}
+        <div class="title-box clearfix">
+            <div class="sec-title">
+                
+                <h2>@blog.ResourceContent</h2>
+            </div>
+
+            <div class="link"><a href="Blog/Posts" class="theme-btn btn-style-one"><span class="btn-title">Tüm Yazılar</span></a></div>
+        </div>
+
+        <div class="row clearfix">
+            @{ var blogPost = Model.blogPosts.Where(x => x.LangId == 3);}
+            @foreach (var item in blogPost)
+            {
+                <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeInUp" data-wow-delay="0ms">
+                        <div class="image-box">
+                            <figure class="image"><a href="blog-single.html"><img class="lazy-image" src="@item.ImageUrl" data-src="@item.ImageUrl" alt=""></a></figure>
+                        </div>
+                        <div class="lower-content">
+                            <h3><a href="blog-single.html">@item.Title</a></h3>
+                            <div class="text">@item.SubTitle</div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+@{ 
+    var footerImage = Model.areas.FirstOrDefault(x => x.rowNumber == 6);
+}
+<section class="newsletter-section" style="background-image: url(@footerImage.imageUrl);">
+    <div class="auto-container">
+        <div class="inner-container">
+            <div class="row clearfix">
+
+            
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,151 @@
+﻿@model ExrizCorpPanel.UI.Models.CustomModels.BlogModel
+
+@{
+    Layout = (ViewBag.LayoutModel as ExrizCorpPanel.UI.Models.CustomModels.LayoutModel).siteDetail.LayoutName;
+}
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<!-- Page Banner Section -->
+<section class="page-banner">
+    <div class="image-layer lazy-image" data-bg="url('assets/LoveUs/images/background/bg-banner-1.jpg')"></div>
+    <div class="bottom-rotten-curve"></div>
+
+    <div class="auto-container">
+        <h1>Blog Page</h1>
+        <ul class="bread-crumb clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">Blog Page</li>
+        </ul>
+    </div>
+
+</section>
+<!--End Banner Section -->
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!--Content Side / Blog Sidebar-->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <!--Blog Posts-->
+                <div class="blog-posts">
+                    <div class="row clearfix">
+                        @foreach (var item in Model.blogPost)
+                        {
+                            <div class="news-block col-lg-6 col-md-6 col-sm-12">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image"><a href="@item.Url"><img class="lazy-image" src="@item.ImageUrl" data-src="@item.ImageUrl" alt=""></a></figure>
+                                    </div>
+                                    <div class="lower-content">
+                                        <div class="date">@item.Date.Date.Day<span class="month">@item.Date.Date.Month @item.Date.Date.Year</span></div>
+                                        <h3><a href="@item.Url">@item.BlogName</a></h3>
+                                        <div class="text">@item.SubTitle</div>
+                                        <div class="post-meta">
+                                            <ul class="clearfix">
+                                                <li><a href="#"><span class="icon fa fa-user"></span> Admin</a></li>
+                                                <li><a href="#"><span class="icon fa fa-comments"></span> 29 Comments</a></li>
+                                                <li><a href="#"><span class="icon fa fa-share-alt"></span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar">
+
+                    <!-- Search -->
+                    <div class="sidebar-widget search-box">
+                        <h3 class="sidebar-title">Search</h3>
+                        <form method="post" action="contact.html">
+                            <div class="form-group">
+                                <input type="search" name="search-field" value="" placeholder="Search..." required>
+                                <button type="submit"><span class="icon flaticon-search-1"></span></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Category Widget -->
+                    <div class="sidebar-widget categories">
+                        <h3 class="sidebar-title">Categories</h3>
+                        <div class="text">Lorem ipsum dolor sit amet consectur pisicelit sed do.</div>
+                        <div class="widget-content">
+                            <ul>
+                                @foreach (var item in Model.blogCategories)
+                                {
+                                    <li><a>@item.FriendlyName</a></li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Post Widget -->
+                    <div class="sidebar-widget popular-posts">
+                        <h3 class="sidebar-title">Latest News</h3>
+                        <div class="widget-content">
+                            @foreach (var item in Model.recentPosts)
+                            {
+                                <div class="news-post">
+                                    <div class="post-thumb"><a href="@item.Url"><img class="lazy-image" src="assets/LoveUs/@item.ImageUrl" data-src="assets/LoveUs/@item.ImageUrl" alt=""></a></div>
+                                    <div class="date">
+                                        <span class="fa fa-calendar-alt"></span>
+                                        @if (item.Date == null)
+                                        {
+                                        <label>tarih girilmemiş</label>
+                                        }
+                                        else
+                                        {
+                                            @item.Date
+                                        }
+
+                                    </div>
+                                    <h4><a href="blog-single.html">@item.Title </a></h4>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Tags Widget -->
+                    <div class="sidebar-widget popular-tags">
+                        <h3 class="sidebar-title">Popular Tags</h3>
+                        <div class="widget-content">
+                            <ul class="clearfix">
+                                <li><a href="blog-single.html">Education</a></li>
+                                <li><a href="blog-single.html">Olympiad</a></li>
+                                <li><a href="blog-single.html">Children</a></li>
+                                <li><a href="blog-single.html">Animals</a></li>
+                                <li><a href="blog-single.html">Donations</a></li>
+                                <li><a href="blog-single.html">Causes</a></li>
+                                <li><a href="blog-single.html">Drawing</a></li>
+                                <li><a href="blog-single.html">Art</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Sidebar Page Container -->
+<!-- Call To Action Section -->
+<section class="call-to-action-two">
+    <div class="auto-container">
+        <div class="inner clearfix">
+            <div class="title-box"><h2>Become A Volunteer</h2></div>
+            <div class="link-box"><a href="contact.html" class="theme-btn btn-style-five"><span class="btn-title">Get Involved</span></a></div>
+        </div>
+    </div>
+</section>
+<!--End Gallery Section -->

@@ -1,0 +1,4 @@
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel.Admin\obj\Debug\netcoreapp2.0\ExrizCorpPanel.Admin.csprojResolveAssemblyReference.cache
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel.Admin\obj\Debug\netcoreapp2.0\ExrizCorpPanel.Admin.csproj.CoreCompileInputs.cache
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel.Admin\obj\Debug\netcoreapp2.0\ExrizCorpPanel.Admin.AssemblyInfoInputs.cache
+C:\Users\Matopc\source\repos\ExrizCorpPanel\ExrizCorpPanel.Admin\obj\Debug\netcoreapp2.0\ExrizCorpPanel.Admin.AssemblyInfo.cs

@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ExrizCorpPanel.UI</title>
+    @{ 
+        var themeName = ViewBag.themeName;
+        var id = 0;
+    }
+
+    @Html.Partial("~/Views/Decor/Shared/_Header.cshtml")
+       
+</head>
+<body>
+
+    @Html.Partial("~/Views/Decor/Partials/_ThemeStart.cshtml")
+    @RenderBody();
+    @Html.Partial("~/Views/Decor/Partials/_ThemeEnd.cshtml")
+    @Html.Partial("~/Views/Decor/Shared/_Scripts.cshtml")
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

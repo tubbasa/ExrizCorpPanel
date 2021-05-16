@@ -1,0 +1,706 @@
+﻿@model ExrizCorpPanel.Data.Models.DB.Page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "AddPage";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var language = TempData["lang"] as List<SelectListItem>;
+    var result = TempData["result"];
+    var types = TempData["types"] as List<SelectListItem>;
+}
+
+}
+
+@section extraCss{
+    <link href="~/assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/global/plugins/summernote/dist/summernote-bs4.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content" style="min-height: 1434px;">
+        <!-- BEGIN PAGE HEADER-->
+        <!-- BEGIN THEME PANEL -->
+        <!-- END THEME PANEL -->
+        <h1 class="page-title">
+            Exriz Kurumsal Panel
+
+        </h1>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    @*<i class="icon-home"></i>*@
+                    <a>Banner İşlemleri</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+
+                <li>
+                    @*<i class="icon-eye"></i>*@
+                    <a href="@Url.Action("AddBanner","BannerManagament")">Galeri Ekle</a>
+                </li>
+            </ul>
+            <div class="page-toolbar">
+
+            </div>
+        </div>
+        <!-- END PAGE HEADER-->
+        <div class="note note-info">
+
+
+            @{
+
+                if (Convert.ToInt32(result) == 1)
+                {
+                    <div class="note note-success">
+                        <h3>İşlem Durumu</h3>
+                        <p>
+                            Galeri kayıt işlemi başarılı. Resimler için seo işlemi yapmak istiyorsanız lütfen <a href="@Url.Action("GetImages","ImagesManagament")">tıklayın</a>
+                            <a class="btn btn-small red btn-outline" href="#" target="_blank">listelemeye git</a>
+                        </p>
+                    </div>
+                }
+                else if (Convert.ToInt32(result) == -1)
+                {
+                    <div class="note note-danger">
+                        <h3>İşlem Durumu</h3>
+                        <p>
+                            Banner kayıt işlemi başarısız
+                            <a class="btn btn-small red btn-outline" href="#" target="_blank">hatayı bildir</a>
+                        </p>
+                    </div>
+                }
+                else
+                {
+
+                }
+            }
+            <div class="portlet light ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Galeri Ekle</span>
+
+                    </div>
+                    @*<div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-cloud-upload"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-wrench"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-trash"></i>
+                            </a>
+                        </div>*@
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    <div class="form-body">
+                        <div class="form-body form-horizontal">
+
+                            <h4 class="col-md-offset-3">Sayfa Bilgileri</h4>
+                            <br />
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" asp-for="PageName">Sayfa Sistem Adı</label>
+                                <div class="col-md-4">
+                                    <input id="PageName" class="form-control" />
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" asp-for="PageName">Sayfa Tipi</label>
+                                <div class="col-md-4">
+                                    <select asp-items="types" id="typeSelect"></select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" asp-for="IsIndexable">İndeksleme Durumu</label>
+                                <div class="col-md-4">
+                                    <input type="checkbox" id="IsIndexable" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-8 col-md-4">
+                                        <br />
+                                        <button type="submit" class="btn green" onclick="addPage()">Kaydet</button>
+                                        @*onclick="addtab(@tabName)"*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="rootwizard">
+                        <br /><br />
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <div class="container">
+                                    <ul>
+                                        @foreach (var item in language)
+                                        {
+                                            var tabName = "#tab-" + item.Value;
+                                            <li><a href="@tabName" data-toggle="tab">@item.Text</a></li>
+
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            @{
+                                var count = 0;
+                            }
+                            @foreach (var item in language)
+                            {
+                                count++;
+                                var tabName = "tab-" + item.Value;
+                                <div class="tab-pane" id="@tabName">
+                                    <h4 class="col-md-offset-3">@item.Text Dil Bilgileri</h4>
+                                    <br />
+                                    <form enctype="multipart/form-data" asp-controller="PageManagament" asp-action="postaddPageDetail" class="form-horizontal">
+                                        <div class="form-body form-horizontal">
+
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Resim Seçiniz</label>
+                                                <div class="col-md-4">
+                                                    <input type="file" class="form-control" name="Image" id="files-@item.Value" />
+                                                    @*File-@item.Value*@
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">İçerik</label>
+                                                <div class="col-md-4">
+                                                    <div id="Content-@item.Value" class="form-control" name="Content-@item.Value">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Başlık</label>
+                                                <div class="col-md-4">
+                                                    <input name="Title" class="form-control" id="Title-@item.Value" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Alt Başlık</label>
+                                                <div class="col-md-4">
+                                                    <input name="SubTitle" class="form-control" id="SubTitle-@item.Value" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Anahtar Kelimeler</label>
+                                                <div class="col-md-4">
+                                                    <input name="SeoKeywords" class="form-control" id="Seo-@item.Value" />
+
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-7 col-md-5">
+                                                    <button type="submit" class="btn green" onclick="addDetail(@item.Value)">Kaydet</button>
+                                                    @*onclick="addtab(@tabName)"*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+
+
+                            @*<div style="float:right">
+                                    <input type='button' id="nextbtn" class='btn button-next' name='next' value='Sonraki' disabled="disabled" />
+                                </div>
+                                <div style="float:left">
+                                    <input type='button' class='btn button-previous' name='previous' value='Önceki' />
+                                </div>*@
+                            <div id="imageDetail" class="modal fade" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Resim Detayları</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-body">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                        <div>
+                                                            <img id="Url" width="250" height="200" style="margin-top: 20px;" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input id="ImgId" style="display:none" />
+                                                        <div class="form-group">
+                                                            <label>Resim Başlığı</label>
+                                                            <input id="title" class="form-control" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Resim Tagları</label>
+                                                            <input type="text" class="form-control" id="Tag" value="" data-role="tagsinput">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Resim Alt Tagı</label>
+                                                            <input id="altTag" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                                            <button type="button" class="btn btn-primary" onclick="imageUpdate()">Değişiklikleri Kaydet</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- END FORM-->
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-9 col-md-3">
+                                <button type="submit" class="btn green" onclick="addPage()">Kaydet</button>
+                                @*onclick="addtab(@tabName)"*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+
+@section extraScript{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js"></script>
+    <script src="~/assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/typeahead/handlebars.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>
+    <script src="~/assets/pages/scripts/components-bootstrap-tagsinput.min.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="~/assets/global/plugins/summernote/dist/summernote-bs4.js" type="text/javascript"></script>
+    <script>
+
+           var languages = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(language));
+        for (var i = 0; i < languages.length; i++) {
+            $('#Content-' + languages[i].Value).summernote({
+            });
+        }
+
+        $(document).ready(function () {
+
+            $('#rootwizard').bootstrapWizard({ 'nextSelector': '.button-next', 'previousSelector': '.button-previous' });
+        });
+
+        $(document).ready(function () {
+            @*$("#upload").click(function (evt) {
+                var fileUpload = $("#files").get(0);
+                var files = fileUpload.files;
+                var data = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    data.append(files[i].name, files[i]);
+                }
+                var obj = {};
+                obj.id = document.getElementById("GalleryId").value;
+                obj.galeryName = document.getElementById("GaleryName").value;
+                $.ajax({
+                    type: "POST",
+                  //  '@Url.Action("PostUploadFilesAjax", "GalleryManagament",new { area="Admin" })'
+                    url: '@Url.Action("PostUploadFilesAjax", "GalleryManagament",new { area="Admin" })?id = '+ document.getElementById("GalleryId").value + '& galeryName=" + document.getElementById("GaleryName").value',
+                        //?id = " + document.getElementById("GalleryId").value + "& galeryName=" + document.getElementById("GaleryName").value,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (message) {
+                        $('#images *').each(function () {
+                            $(this).remove();
+                        });
+                        $.each(message, function (index, value) {
+                            var id = value.id;
+                            var url = value.imageUrl;
+                            console.log(message);
+
+                            var div = document.createElement('div');
+                            div.className = 'col-md-2';
+                            div.id = "img-" + id;
+                            div.innerHTML = '<div class="col-md-12"><img src="' + url + '" width="200" height="200" /></div><div class="col-md-12"><div class="input-group"><input type="text" value="İşlemler" class="form-control" disabled /><div class="input-group-btn"><a class="btn" onclick="deleteImage(this)" id="' + id + '"><i class="icon-trash"></i></a><a class="btn" id="' + id + '" name="' + $('#GaleryName').val() + '" onclick="openModal(this)"><i class="icon-list"></i></a></div></div></div>';
+                            document.getElementById("images").appendChild(div);
+
+                            console.log(value);
+                        });
+                    },
+                    error: function () {
+                        alert("There was error uploading files!");
+                    }
+                });
+            });*@
+        });
+        function ImageUpload(id, lang) {
+            @*var fileUpload = $("#File-" + langId).get(0);
+            var files = fileUpload.files;
+            var data = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                data.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("PostUploadFilesAjax", "GalleryManagament",new { area="Admin" })?areaId=' + id,
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (message) {
+                    $('#images *').each(function () {
+                        $(this).remove();
+                    });
+                    $.each(message, function (index, value) {
+                        var id = value.id;
+                        var url = value.imageUrl;
+                        console.log(message);
+
+                        var div = document.createElement('div');
+                        div.className = 'col-md-2';
+                        div.id = "img-" + id;
+                        div.innerHTML = '<div class="col-md-12"><img src="' + url + '" width="200" height="200" /></div><div class="col-md-12"><div class="input-group"><input type="text" value="İşlemler" class="form-control" disabled /><div class="input-group-btn"><a class="btn" onclick="deleteImage(this)" id="' + id + '"><i class="icon-trash"></i></a><a class="btn" id="' + id + '" name="' + $('#GaleryName').val() + '" onclick="openModal(this)"><i class="icon-list"></i></a></div></div></div>';
+                        document.getElementById("images").appendChild(div);
+
+                        console.log(value);
+                    });
+                },
+                error: function () {
+                    alert("There was error uploading files!");
+                }
+            });*@
+            var fileUpload = $("#files-" + lang).get(0);
+                var files = fileUpload.files;
+                var data = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    data.append(files[i].name, files[i]);
+            }
+            var obj = {};
+            obj.detailId = id;
+                //var obj = {};
+                //obj.id = document.getElementById("GalleryId").value;
+                //obj.galeryName = document.getElementById("GaleryName").value;
+                $.ajax({
+                    type: "POST",
+                    //  '@Url.Action("PostUploadFilesAjax", "GalleryManagament",new { area="Admin" })'
+                    url: 'PostUploadFilesAjax?detailId=' + id + '',
+                    //?id = " + document.getElementById("GalleryId").value + "& galeryName=" + document.getElementById("GaleryName").value,
+
+                    processData: false,  // Important!
+                    contentType: false,
+                    data: data,
+                    success: function (message) {
+                        //$('#images *').each(function () {
+                        //    $(this).remove();
+                        //});
+                        //$.each(message, function (index, value) {
+                        //    var id = value.id;
+                        //    var url = value.imageUrl;
+                        //    console.log(message);
+
+                        //    var div = document.createElement('div');
+                        //    div.className = 'col-md-2';
+                        //    div.id = "img-" + id;
+                        //    div.innerHTML = '<div class="col-md-12"><img src="' + url + '" width="200" height="200" /></div><div class="col-md-12"><div class="input-group"><input type="text" value="İşlemler" class="form-control" disabled /><div class="input-group-btn"><a class="btn" onclick="deleteImage(this)" id="' + id + '"><i class="icon-trash"></i></a><a class="btn" id="' + id + '" name="' + $('#GaleryName').val() + '" onclick="openModal(this)"><i class="icon-list"></i></a></div></div></div>';
+                        //    document.getElementById("images").appendChild(div);
+
+                        //    console.log(value);
+                        //});
+                    },
+                    error: function () {
+                        alert("There was error uploading files!");
+                    }
+                });
+
+        }
+
+
+
+        function addPage() {
+            var name = $("#PageName").val();
+            var indexable = false;
+                //$("#IsIndexable").val();
+            var data = {};
+            data.PageName = name;
+            var indexable = false;
+            if ($('#IsIndexable').prop("checked") == true) {
+                indexable = true;
+            }
+            else {
+                indexable = false;
+            }
+            var type = $('#typeSelect option:selected');
+            console.log("tip");
+            console.log(type);
+            data.SelectedType = type[0].value;
+            alert(data.SelectedType);
+            data.Id = 0;
+            $.ajax({
+                type: "POST",
+                url: "postaddPage",
+                data: JSON.stringify(data),
+                dataType: 'json',
+                contentType: "application/json;utf-8",
+                success: function (id) {
+                    var pageId = id;
+                    addDetail(pageId);
+
+                },
+                error: function (er) {
+                    console.log(er);
+                    alert("There was error uploading files!");
+                }
+            });
+
+        }
+
+        function addDetail(pageId) {
+
+            var items = $('div[id^="tab"]');
+
+            var idlist = [];
+            for (var i = 0; i < items.length; i++) {
+                idlist.push({ Id: items[i].id.split("-")[1] });
+            }
+            console.log(idlist);
+            var counter = 0;
+            $.each(idlist, function (id) {
+                counter++;
+                console.log("it:" + idlist[id].Id);
+                var title = $("#Title-" + idlist[id].Id).val();
+                var subtitle = $("#SubTitle-" + idlist[id].Id).val();
+                var content = $("#Content-" + idlist[id].Id).summernote('code');
+                var keys = $("#Seo-" + idlist[id].Id).val();
+                var langId =idlist[id].Id;
+
+                var data = {};
+                data.Content = content;
+                data.Title = title;
+                data.SubTitle = subtitle;
+                data.SeoKeywords = keys;
+                data.LangId = langId;
+                data.PageId = pageId;
+                console.log(data);
+
+                $.ajax({
+                    type: "POST",
+                    url: "postaddPageDetail",
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    contentType: "application/json;utf-8",
+                    success: function (detailId) {
+
+                        ImageUpload(detailId, langId);
+
+
+                    },
+                    error: function () {
+                        alert("There was error uploading files!");
+                    }
+                });
+                alert(title);
+             })
+
+                @*$.each(@ids, function (id) {
+                    var title = $("#Title-" + id).val();
+                    var subtitle = $("#SubTitle-" + id).val();
+                    var content = $("#Content-" + id).val();
+                    var keys = $("#Seo-" + id).val();
+                    var langId = $("#Language" + id).val();
+                    var data = {};
+                    data.Content = content;
+                    data.Title = title;
+                    data.SubTitle = subtitle;
+                    data.SeoKeywords = keys;
+                    data.LangId = langId;
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/MultiPageManagament/postaddPageDetail",
+                        data: data,
+                        success: function (id) {
+                            var detailId = id;
+
+                        },
+                        error: function () {
+                            alert("There was error uploading files!");
+                        }
+                    });
+                    alert(title);
+                });
+
+            }*@
+        }
+
+        function imageUpdate() {
+            var obj = {};
+            obj.Id = $('#ImgId').val();
+            obj.ImageUrl = $('#Url').val();
+            obj.ImageTitle = $('#title').val();
+            obj.ImageTag = $('#Tag').val();
+            obj.ImageAltTag = $('#altTag').val();
+
+            $.ajax({
+
+                url:  '@Url.Action("updateImageDetail", "GalleryManagament",new { area="Admin" })',
+                data: JSON.stringify(obj),
+                error: function () {
+                    $('#info').html('<p>An error has occurred</p>');
+                },
+                dataType: 'json',
+                contentType: "application/json;utf-8",
+                success: function (data) {
+                    console.log(data);
+                },
+                type: 'POST'
+            });
+
+        }
+        function openModal(element) {
+            var Id = $(element).prop("id");
+            var name = $(element).prop("name");
+            var body = {};
+            body.id = Id;
+
+            $.ajax({
+
+                url: '@Url.Action("GetImageDetail", "GalleryManagament",new { area="Admin" })',
+                data: JSON.stringify(body.id),
+                error: function () {
+                    $('#info').html('<p>An error has occurred</p>');
+                },
+                dataType: 'json',
+                contentType: "application/json;utf-8",
+                success: function (data) {
+                    $('#ImgId').val(data.id);
+                    $('#title').val(data.imageTitle);
+                    $('#Url').attr('src', data.imageUrl);
+                    $("#Tag").attr('value', data.imageTag);
+                    $('#altTag').val(data.imageAltTag);
+                    $('#imageDetail').modal('show');
+                    var list = data.imageTag.split(',');
+                    $.each(list, function (index, value) {
+                        $('#Tag').tagsinput('add', value);
+                        console.log(value);
+                    });
+
+                    console.log(data);
+                },
+                type: 'POST'
+            });
+        }
+
+        function deleteImage(element) {
+            var Id = $(element).prop("id");
+            var body = {};
+            body.id = Id;
+            $.ajax({
+                url: '@Url.Action("deleteImageFromGallery", "GalleryManagament",new { area="Admin" })',
+                data: JSON.stringify(body.id),
+                dataType: 'json',
+                contentType: "application/json;utf-8",
+                success: function (data) {
+                    var elementId = "#img-" + Id;
+                    $(elementId).remove();
+                },
+
+                error: function () {
+                    $('#info').html('<p>An error has occurred</p>');
+                }
+            });
+            console.log(Id);
+
+
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#profile-img-tag').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#profile-img").change(function () {
+            readURL(this);
+        });
+
+
+        function addGallery() {
+            var gallery = {};
+            gallery.GaleryName = $('#GaleryName').val();
+            gallery.GaleryLink = $('#GaleryLink').val();
+            $.ajax({
+
+                url:  '@Url.Action("postGallery", "GalleryManagament",new { area="Admin" })',
+                data: JSON.stringify(gallery),
+                error: function () {
+                    $('#info').html('<p>An error has occurred</p>');
+                },
+                dataType: 'json',
+                contentType: "application/json;utf-8",
+                success: function (data) {
+                    console.log(data);
+                    $('#Id').val(data);
+                    $('#GalleryId').val(data);
+                    document.getElementById("nextbtn").disabled = false;
+                    var element = document.getElementById("nextLink");
+                    element.classList.remove("inactiveLink");
+                },
+                type: 'POST'
+            });
+
+        }
+        function take() {
+            var items = $('input[id^="desc"]');
+            var desclist = [];
+            for (var i = 0; i < items.length; i++) {
+                desclist.push({ LangId: items[i].id.split("-")[1], Name: items[i].value, GalleryId: $('#Id').val() });
+
+            }
+            console.log(desclist);
+            var items = $('input[id^="name"]');
+            var namelist = [];
+            for (var i = 0; i < items.length; i++) {
+                namelist.push({ LangId: items[i].id.split("-")[1], Name: items[i].value, GalleryId: $('#Id').val() });
+
+            }
+
+            var list = [];
+            for (var i = 0; i < desclist.length; i++) {
+                console.log("l:" + desclist[i].LangId);
+                list.push({ GalleryTitle: namelist[i].Name, GalleryContent: desclist[i].Name, Langıd: desclist[i].LangId, GalleryId: desclist[i].GalleryId });
+            }
+            console.log(JSON.stringify(list));
+            $.ajax({
+                url: '@Url.Action("postGalleryMapping", "GalleryManagament",new { area="Admin" })',
+                data: JSON.stringify(list),
+                error: function () {
+                    $('#info').html('<p>An error has occurred</p>');
+                },
+                dataType: 'json',
+                contentType: "application/json;utf-8",
+                success: function (data) {
+                    console.log(data);
+
+                },
+                type: 'POST'
+            });
+            console.log(list);
+
+        };
+    </script>
+}

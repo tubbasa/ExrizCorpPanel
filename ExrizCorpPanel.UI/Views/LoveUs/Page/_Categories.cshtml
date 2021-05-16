@@ -1,0 +1,56 @@
+﻿@model ExrizCorpPanel.UI.Models.CustomModels.MultiPageCategoriesModel
+
+@{
+    Layout = (ViewBag.LayoutModel as ExrizCorpPanel.UI.Models.CustomModels.LayoutModel).siteDetail.LayoutName;
+}
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<!-- Page Banner Section -->
+<section class="page-banner">
+    <div class="image-layer lazy-image" data-bg="url('assets/LoveUs/images/background/bg-banner-1.jpg')"></div>
+    <div class="bottom-rotten-curve"></div>
+
+    <div class="auto-container">
+        <h1>@Model.CategoryName</h1>
+        <ul class="bread-crumb clearfix">
+            <li><a href="index.html">Anasayfa</a></li>
+        </ul>
+    </div>
+
+</section>
+<!--End Banner Section -->
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!--Content Side / Blog Sidebar-->
+            <div class="content-side col-lg-12 col-md-12 col-sm-12">
+                <!--Blog Posts-->
+                <div class="blog-posts">
+                    <div class="row clearfix">
+                        @foreach (var item in Model.pages)
+                        {
+                            <div class="news-block col-lg-4 col-md-4 col-sm-12">
+                                <div class="inner-box">
+                                    <div class="lower-content">
+                                        <div><a href="/MultiPage/Categories/@item.Url"><h5>@item.PageName</h5></a></div>
+                                        <span>@item.SubTitle</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Sidebar Side-->
+
+        </div>
+    </div>
+</div>

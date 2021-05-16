@@ -1,0 +1,211 @@
+﻿@model ExrizCorpPanel.UI.Models.CustomModels.MainModel
+@{
+    Layout = (ViewBag.LayoutModel as ExrizCorpPanel.UI.Models.CustomModels.LayoutModel).siteDetail.LayoutName;
+    var id = 0;
+
+}
+
+<!-- header-wrapper -->
+<!-- /header-wrapper -->
+<!-- MAIN SLIDER WRAPPER -->
+<section class="slider-wrapper">
+    <!-- row -->
+    <div class="row">
+        <!-- col-md-8 -->
+        <div class="col-md-8 col-sm-12 col-xs-12">
+      
+
+
+                        @foreach (var item in Model.sliders)
+                        {
+                            <img class="mySlides" src="@item.ImageUrl" style="max-height:392px"/>
+                        }
+                       
+
+                 
+        </div>
+        <!-- /col-md-8 -->
+        <!-- col-md-4 -->
+        <div class="col-md-4 col-xs-12">
+
+            @foreach (var item in Model.banners.Take(2))
+            {
+
+                <div id="showcase-content1">
+                    <div class="feature">
+                        <img src="@item.ImageUrl" />
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    <!-- /row -->
+</section>
+<!-- end of main slider wrapper -->
+<!-- Slider Bottom Wrapper -->
+<!--definition olarak yapılacak burası -->
+<section class="slider-bottom-wrapper mt-50">
+    <!-- row -->
+    <div class="row">
+        <!-- col-md-4 -->
+        @foreach (var item in Model.areas.Where(x => x.typeName == "Misions"))
+        {
+            <div class="col-md-4 mb-30">
+                <article class="featured-content">
+                    <!-- title -->
+                    <div class="lead-title">
+                        <h2>@item.Title</h2>
+                    </div>
+                    <!-- //title -->
+                    <!-- promo-thumb -->
+                    <div class="promo-thumb">
+                        <img alt="" src="@item.imageUrl" class="img-responsive">
+                    </div>
+                    <!-- /promo-thumb -->
+                    <!-- promo-text -->
+                    <div class="promo-text">
+                        <p>
+                            @item.Content
+                        </p>
+                    </div>
+                    <!-- /promo-text -->
+                </article>
+            </div>
+        }
+    </div>
+
+</section>
+<!-- /Slider Bottom Wrapper -->
+<!-- Service Wrapper -->
+<section class="service-wrapper mt-50">
+    <!-- row -->
+    <div class="row">
+        <!-- col-md-12 -->
+        <div class="col-md-12">
+            <!-- title -->
+            <div class="lead-title">
+                <h2>@Model.stringResources.FirstOrDefault(x => x.ResourceSystemName == "Services").ResourceContent</h2>
+            </div>
+            <!-- //title -->
+        </div>
+        <!-- /col-md-12 -->
+    </div>
+    <!-- /row -->
+    <!-- services-box -->
+    <div class="row">
+        <!-- col-md-6 -->
+        @foreach (var item in Model.areas.Where(x => x.typeName == "Services"))
+        {
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="services-box">
+                    @if (item.IconName != null)
+                    {<span class="pull-left">
+
+
+                            <i style="" class="@item.IconName"></i>
+
+
+                        </span>}
+
+                    <div class="media-body">
+                        <h2 class="media-heading">@item.Title</h2>
+                        <p>
+                            @item.Content
+                        </p>
+                    </div>
+                </div>
+                <!-- //services-box -->
+            </div>
+        }
+    </div>
+    <!-- /row -->
+
+</section>
+<!-- /Service Wrapper -->
+<!--job koyulacak buraya-->
+<!-- Portfolio-content -->
+<section class="portfolio-content">
+    <div class="lead-title">
+        <h2>@Model.stringResources.FirstOrDefault(x => x.ResourceSystemName == "MainPage.JobAreaTitle").ResourceContent</h2>
+    </div>
+    <div class="grid-block">
+        @foreach (var item in Model.jobresources.Where(x => x.LangId == 1))
+        {
+            <figure class="effect-layla">
+                @{
+                    var image = item.ImageUrls != null ? item.ImageUrls.FirstOrDefault() : "";
+                }
+                <img src="@image" alt="img01" />
+                <figcaption>
+                    <h2>@item.JobName</h2>
+                    <p>@item.Content</p>
+                    <a href="#">@Model.stringResources.FirstOrDefault(x => x.ResourceSystemName == "detail").ResourceContent</a>
+                </figcaption>
+            </figure>
+        }
+    </div>
+</section><!-- /Portfolio-content -->
+<!--references gelecek-->
+<!-- partner-wrapper -->
+<section class="partner-wrapper mt-30">
+    <!-- row -->
+    <div class="row">
+        <!-- col-md-12 -->
+        <div class="col-md-12">
+            <!-- client-logo -->
+            <div class="client-logo">
+                <!-- Title -->
+                <div class="lead-title">
+                    <h2>@Model.stringResources.FirstOrDefault(x => x.ResourceSystemName == "partner").ResourceContent</h2>
+
+                    <!-- clients-navigation -->
+                    <div class="customNavigation clients-navigation">
+                        <a class="next"><i class="fa fa-angle-right"></i></a>
+                        <a class="prev"><i class="fa fa-angle-left"></i></a>
+                    </div>
+                    <!-- /clients-navigation -->
+                </div>
+                <!-- /Title -->
+                <!-- client-logo-caruosel -->
+                <div class="client-logo-caruosel">
+                    <!-- clients -->
+                    <div class="clients">
+                        @foreach (var item in Model.references)
+                        {
+                            <div class="item">
+                                <img src="@item.ReferenceImageUrl" style="width:400px" alt="Image" />
+                            </div>
+                        }
+                    </div>
+                    <!-- /clients -->
+
+                </div>
+                <!-- /client-logo-caruosel -->
+            </div>
+            <!-- /client logo -->
+        </div>
+        <!-- /col-md-12 -->
+    </div>
+    <!-- /row -->
+</section>
+<!-- /partner-wrapper -->
+
+@section Scripts{
+    <script>
+     var myIndex = 0;
+     carousel();
+
+     function carousel() {
+         var i;
+         var x = document.getElementsByClassName("mySlides");
+         for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";
+         }
+         myIndex++;
+         if (myIndex > x.length) { myIndex = 1 }
+         x[myIndex - 1].style.display = "block";
+         setTimeout(carousel, 2000); // Change image every 2 seconds
+     }
+    </script>
+}
